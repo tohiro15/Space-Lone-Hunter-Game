@@ -361,8 +361,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: RETRY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -571,10 +571,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1330448655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 860, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490373447
 MonoBehaviour:
@@ -598,8 +598,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
-  m_sharedMaterial: {fileID: -6818668458756581799, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -623,13 +623,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 100
   m_fontSizeBase: 100
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 90
-  m_fontSizeMax: 120
-  m_fontStyle: 0
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -853,6 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db994449cde9ec443b3d3bc2aa475f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameOverUI: {fileID: 1330448654}
   _player: {fileID: 0}
 --- !u!50 &516199834
 Rigidbody2D:
@@ -1327,9 +1328,9 @@ RectTransform:
   - {fileID: 323904967}
   m_Father: {fileID: 1330448655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -300}
   m_SizeDelta: {x: 587.84, y: 175.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733943943
@@ -1694,10 +1695,10 @@ RectTransform:
   - {fileID: 1566479129}
   m_Father: {fileID: 484789075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1434958495
 GameObject:
@@ -1805,10 +1806,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1330448655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -620}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -80}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566479130
 MonoBehaviour:
@@ -1832,15 +1833,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'High Score: 000'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 960bedb1f5e02e74bb687f1eb93b6438, type: 2}
-  m_sharedMaterial: {fileID: -7434518277493726326, guid: 960bedb1f5e02e74bb687f1eb93b6438, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255584
-  m_fontColor: {r: 0.8784313, g: 1, b: 0, a: 1}
+  m_fontColor: {r: 0.8793335, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1857,13 +1858,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 60.9
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 45
-  m_fontSizeMax: 60
-  m_fontStyle: 0
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2179,8 +2180,6 @@ MonoBehaviour:
   _currentScore: 0
   _bulletPrefab: {fileID: 7097414585687021107, guid: c5382f0d5660d9c40855335c15e3ab3d, type: 3}
   fireRate: 1
-  GameOverUI: {fileID: 1330448654}
-  ScoreUI: {fileID: 1769400556}
   _scoreTextUI: {fileID: 2065995303}
   _highScoreTextUI: {fileID: 1566479130}
 --- !u!82 &1991688283
@@ -2323,10 +2322,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1769400557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065995303
 MonoBehaviour:
@@ -2350,8 +2349,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'SCORE: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
-  m_sharedMaterial: {fileID: -6818668458756581799, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2375,12 +2374,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.15
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 36
-  m_fontSizeMax: 55
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

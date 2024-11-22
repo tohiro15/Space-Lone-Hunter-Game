@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
@@ -16,18 +17,13 @@ public class Player : MonoBehaviour
     private float nextFireTime = 0f;
 
     [Header("UI Menu")]
-    public GameObject GameOverUI;
-    public GameObject ScoreUI;
     [SerializeField] private TextMeshProUGUI _scoreTextUI;
     [SerializeField] private TextMeshProUGUI _highScoreTextUI;
-
     private PlayerController _controller;
     private BulletSpawn _bulletSpawner;
     private void Start()
     {
         UpdateScoreUI();
-
-        ScoreUI.SetActive(true);
 
         HighScore = PlayerPrefs.GetInt(HighScoreKey, 0);
 
@@ -46,7 +42,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    #region SavePlayerPrefsSystem
     public void UpdateScoreUI()
     {
         _scoreTextUI.text = $"SCORE: {_currentScore}";
@@ -78,5 +73,4 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt(HighScoreKey, 0);
         PlayerPrefs.Save();
     }
-    #endregion
 }
