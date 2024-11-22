@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private Player _player;
     private void Start()
     {
@@ -16,7 +12,8 @@ public class PlayerDeath : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Time.timeScale = 0;
-           _gameOverUI.SetActive(true);
+            _player.GameOverUI.SetActive(true);
+            _player.ScoreUI.SetActive(false);
             _player.CheckAndSaveHighScore();
         }
     }
