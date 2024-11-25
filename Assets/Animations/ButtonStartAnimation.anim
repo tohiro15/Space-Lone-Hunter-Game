@@ -23,16 +23,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 52
-        outSlope: 52
-        tangentMode: 34
+        value: -140
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: 130
+        value: -100
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -41,7 +41,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 4.5
-        value: -50
+        value: -160
         inSlope: 0
         outSlope: 0
         tangentMode: 1
@@ -50,9 +50,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 5.5
-        value: 0
-        inSlope: 50
-        outSlope: 50
+        value: -145
+        inSlope: 15
+        outSlope: 15
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -110,16 +110,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 52
-        outSlope: 52
-        tangentMode: 34
+        value: -140
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: 130
+        value: -100
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -128,7 +128,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 4.5
-        value: -50
+        value: -160
         inSlope: 0
         outSlope: 0
         tangentMode: 1
@@ -137,9 +137,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 5.5
-        value: 0
-        inSlope: 50
-        outSlope: 50
+        value: -145
+        inSlope: 15
+        outSlope: 15
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
