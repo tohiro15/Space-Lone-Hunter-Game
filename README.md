@@ -1,7 +1,7 @@
 # Space-Hunter-Game
 
-Engine - Unity 2022.3.51f1
-Language - Russian, English
+Engine - Unity 2022.3.51f1.
+Language - Russian, English.
 
 - This game was created during a deeper exploration of the Unity engine 2022.3.51f1. I release the whole project and its updates in English and Russian.
 
