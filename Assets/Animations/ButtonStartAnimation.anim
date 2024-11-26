@@ -24,14 +24,14 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: -140
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: 11.428572
+        outSlope: 11.428572
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.5
+        time: 3.5
         value: -100
         inSlope: 0
         outSlope: 0
@@ -40,19 +40,10 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 4.5
-        value: -160
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 5.5
-        value: -145
-        inSlope: 15
-        outSlope: 15
+        value: -140
+        inSlope: -20
+        outSlope: -20
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -111,14 +102,14 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: -140
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: 11.428572
+        outSlope: 11.428572
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.5
+        time: 3.5
         value: -100
         inSlope: 0
         outSlope: 0
@@ -127,19 +118,10 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 4.5
-        value: -160
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 5.5
-        value: -145
-        inSlope: 15
-        outSlope: 15
+        value: -140
+        inSlope: -20
+        outSlope: -20
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334

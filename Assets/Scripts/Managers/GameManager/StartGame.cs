@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
-    public void Starting()
+    private void Start()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Game");
+    }
+    public void Starting()
+    {
+        SceneManager.LoadScene(1);
     }
 }
