@@ -1,16 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ClosedShopMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _shopMenuCanvas;
-    [SerializeField] private GameObject _gameCanvas;
-    public void ClosedMenu()
+    [SerializeField] GameObject _shopCanvas;
+    [SerializeField] GameObject _loadingCanvas;
+
+    [SerializeField] private Slider _loadingBar;
+    [SerializeField] private TextMeshProUGUI _loadingText;
+    public void CloseMenu()
     {
-        _player.SetActive(false);
-        _shopMenuCanvas.SetActive(false);
-        _gameCanvas.SetActive(true);
+        _loadingCanvas.SetActive(true);
+
+        StartCoroutine(AsyncLoadingGame());
+    }
+
+    IEnumerator AsyncLoadingGame()
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Game");
+
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            _loadingBar.value = progress;
+            _loadingText.text = $"{(progress * 100):0}%";
+
+            yield return null;
+        }
     }
 }
