@@ -14,7 +14,10 @@ public class PlayerDeath : MonoBehaviour
             Time.timeScale = 0;
             _player.GameOverUI.SetActive(true);
             _player.ScoreUI.SetActive(false);
+            _player.PauseButtonUI.SetActive(false);
+
             _player.CheckAndSaveHighScore();
+            _player.SaveWalletAmount();
         }
     }
 }

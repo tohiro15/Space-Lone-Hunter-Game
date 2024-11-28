@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
+using TMPro;
 public class StartGame : MonoBehaviour
 {
     private void Start()
@@ -8,6 +11,6 @@ public class StartGame : MonoBehaviour
     }
     public void Starting()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
 }

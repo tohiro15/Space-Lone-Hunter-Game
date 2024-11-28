@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ClosedShopMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _shopMenuUI;
-    [SerializeField] private GameObject _pauseButton;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _shopMenuCanvas;
+    [SerializeField] private GameObject _gameCanvas;
     public void ClosedMenu()
     {
-        Time.timeScale = 1;
-        _shopMenuUI.SetActive(false);
-        _pauseButton.SetActive(true);
+        _player.SetActive(false);
+        _shopMenuCanvas.SetActive(false);
+        _gameCanvas.SetActive(true);
     }
 }

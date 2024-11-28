@@ -11,7 +11,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
 
-            if (_player != null) _player.AddScore(1);
+            if (_player != null)
+            {
+                _player.AddScore(1);
+                _player.AddWallet();
+            }
             else Debug.Log("The player is not initialized!");
         }
     }

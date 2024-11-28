@@ -7,6 +7,7 @@ public class ReturnToMainMenu : MonoBehaviour
     public void ClickToReturn()
     {
         _player.CheckAndSaveHighScore();
-        SceneManager.LoadScene(0);
+        _player.SaveWalletAmount();
+        SceneManager.LoadScene("MainMenu");
     }
 }
