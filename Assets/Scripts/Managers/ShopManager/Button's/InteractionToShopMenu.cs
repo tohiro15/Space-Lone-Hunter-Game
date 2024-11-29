@@ -4,9 +4,9 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class OpenShopMenu : MonoBehaviour
+public class InteractionToShopMenu : MonoBehaviour
 {
-    [SerializeField] GameObject _gameCanvas;
+    [SerializeField] GameObject _baseCanvas;
     [SerializeField] GameObject _loadingCanvas;
 
     [SerializeField] private Slider _loadingBar;
@@ -15,12 +15,19 @@ public class OpenShopMenu : MonoBehaviour
     {
         _loadingCanvas.SetActive(true);
 
-        StartCoroutine(AsyncLoadingShop());
+        StartCoroutine(AsyncLoadingScene("Shop"));
     }
 
-    IEnumerator AsyncLoadingShop()
+    public void CloseMenu()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Shop");
+        _loadingCanvas.SetActive(true);
+
+        StartCoroutine(AsyncLoadingScene("Game"));
+    }
+
+    IEnumerator AsyncLoadingScene(string sceneName)
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
 
         while (!asyncOperation.isDone)

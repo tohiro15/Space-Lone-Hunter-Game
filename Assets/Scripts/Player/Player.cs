@@ -4,20 +4,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private const string HighScoreKey = "HighScore";
-    private const string WalletAmountKey = "WalletAmount";
 
     [Header("Player Statistic")]
     [SerializeField] private float _speed;
     [SerializeField] private int _currentScore = 0;
     [SerializeField] private int _highScore = 0;
 
-    [SerializeField] private int _walletAmount = 0;
     [SerializeField] private int _coinAmount = 1;
 
     [Header("Bullet Settings")]
     [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] private float fireRate = 1f;
     private float nextFireTime = 0f;
+
+    [Header("Scriptable Object")]
+    [SerializeField] private PlayerData _playerData;
 
     [Header("UI Menu")]
     public GameObject GameOverUI;
@@ -40,9 +40,8 @@ public class Player : MonoBehaviour
         ScoreUI.SetActive(true);
 
         _highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
-        _walletAmount = PlayerPrefs.GetInt (WalletAmountKey, 0);
 
-        _walletAmountTextUI.text = $"WALLET: {_walletAmount}";
+        _walletAmountTextUI.text = $"WALLET: {_playerData.WalletAmount}";
         _currentCoinsEarnedUI.text = $"CURRENT COINS EARNED: 0";
 
         _controller = GetComponentInChildren<PlayerController>();
@@ -58,7 +57,7 @@ public class Player : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             _bulletSpawner.Spawn(_bulletPrefab);
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + _playerData.FireRate;
         }
     }
 
@@ -83,14 +82,9 @@ public class Player : MonoBehaviour
     public void AddWallet()
     {
         int numberCoins = _currentScore * _coinAmount / 2;
-        _walletAmount += numberCoins;
+        _playerData.WalletAmount += numberCoins;
 
         UpdateCoinUI(numberCoins);
-    }
-    public void SaveWalletAmount()
-    {
-        PlayerPrefs.SetInt(WalletAmountKey, _walletAmount);
-        PlayerPrefs.Save();
     }
 
     public void CheckAndSaveHighScore()
