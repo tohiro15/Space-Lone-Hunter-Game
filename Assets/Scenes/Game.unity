@@ -512,10 +512,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 490373446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -330}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -120, y: -300}
+  m_SizeDelta: {x: 268, y: 146.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162123058
 MonoBehaviour:
@@ -564,10 +564,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 60.9
+  m_fontSize: 34.8
+  m_fontSizeBase: 34.8
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 45
   m_fontSizeMax: 60
   m_fontStyle: 0
@@ -1549,6 +1549,7 @@ RectTransform:
   - {fileID: 1566479129}
   - {fileID: 1716689299}
   - {fileID: 162123057}
+  - {fileID: 985267572}
   m_Father: {fileID: 1330448655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -2826,7 +2827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WALLET: 0'
+  m_text: 'WALLET: 000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
   m_sharedMaterial: {fileID: -6818668458756581799, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
@@ -2853,7 +2854,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.4
+  m_fontSize: 40.75
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2922,6 +2923,140 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -80}
   m_SizeDelta: {x: 280.065, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &985267571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985267572}
+  - component: {fileID: 985267574}
+  - component: {fileID: 985267573}
+  m_Layer: 5
+  m_Name: WalletAmountText (TMP) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &985267572
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985267571}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 490373446}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 120, y: -300}
+  m_SizeDelta: {x: 268, y: 146.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &985267573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985267571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "WALLET: \n000"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 960bedb1f5e02e74bb687f1eb93b6438, type: 2}
+  m_sharedMaterial: {fileID: -7434518277493726326, guid: 960bedb1f5e02e74bb687f1eb93b6438, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278255584
+  m_fontColor: {r: 0.8784313, g: 1, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 34.8
+  m_fontSizeBase: 34.8
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 45
+  m_fontSizeMax: 60
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 3.7687988, y: 0, z: 4.8154297, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &985267574
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985267571}
+  m_CullTransparentMesh: 1
 --- !u!1 &1030900611
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,7 +4766,6 @@ GameObject:
   - component: {fileID: 1991688282}
   - component: {fileID: 1991688284}
   - component: {fileID: 1991688286}
-  - component: {fileID: 1991688285}
   - component: {fileID: 1991688283}
   m_Layer: 0
   m_Name: Player
@@ -4669,10 +4803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a061c3ca0b6c6f428fbf44c560aab69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 6
   _currentScore: 0
   _highScore: 0
-  _coinAmount: 1
   _bulletPrefab: {fileID: 7097414585687021107, guid: c5382f0d5660d9c40855335c15e3ab3d, type: 3}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
   GameOverUI: {fileID: 1330448654}
@@ -4681,6 +4814,7 @@ MonoBehaviour:
   _scoreTextUI: {fileID: 2065995303}
   _highScoreTextUI: {fileID: 1566479130}
   _currentScoreTextUI: {fileID: 1716689300}
+  _walletAmountAfterDeathTextUI: {fileID: 985267573}
   _walletAmountTextUI: {fileID: 892804114}
   _currentCoinsEarnedUI: {fileID: 162123058}
 --- !u!82 &1991688283
@@ -4789,18 +4923,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31be6eadecbb01c4db896459ecbbd135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1991688285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991688279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e33499e5c9cb8448e5cc113d60e913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1991688286
@@ -5158,7 +5280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE: 0'
+  m_text: 'SCORE: 000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}
   m_sharedMaterial: {fileID: -6818668458756581799, guid: de9729d229d24e14ba18ddbd6151de07, type: 2}

@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] private int _currentScore = 0;
     [SerializeField] private int _highScore = 0;
 
-    [SerializeField] private int _coinAmount = 1;
-
     [Header("Bullet Settings")]
     [SerializeField] GameObject _bulletPrefab;
     private float nextFireTime = 0f;
@@ -19,20 +17,22 @@ public class Player : MonoBehaviour
     [Header("Scriptable Object")]
     [SerializeField] private PlayerData _playerData;
 
-    [Header("UI Menu")]
+    [Header("GameObjects UI")]
     public GameObject GameOverUI;
     public GameObject PauseButtonUI;
     public GameObject ScoreUI;
+
+    [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI _scoreTextUI;
     [SerializeField] private TextMeshProUGUI _highScoreTextUI;
     [SerializeField] private TextMeshProUGUI _currentScoreTextUI;
+    [SerializeField] private TextMeshProUGUI _walletAmountAfterDeathTextUI;
 
     [SerializeField] private TextMeshProUGUI _walletAmountTextUI;
     [SerializeField] private TextMeshProUGUI _currentCoinsEarnedUI;
 
     private PlayerController _controller;
     private BulletSpawn _bulletSpawner;
-    private PlayerEarnings _earnings;
     private void Start()
     {
         UpdateScoreUI();
@@ -47,8 +47,6 @@ public class Player : MonoBehaviour
         _controller = GetComponentInChildren<PlayerController>();
 
         _bulletSpawner = GetComponentInChildren<BulletSpawn>();
-
-        _earnings = GetComponent<PlayerEarnings>();
     }
     private void Update()
     {
@@ -68,9 +66,10 @@ public class Player : MonoBehaviour
         _currentScoreTextUI.text = $"CURRENT SCORE: {_currentScore}";
     }
 
-    public void UpdateCoinUI(int numberCoins)
+    public void UpdateCoinUI(int newAmount)
     {
-        _currentCoinsEarnedUI.text = $"CURRENT COINS EARNED: {numberCoins}";
+        _currentCoinsEarnedUI.text = $"CURRENT COINS EARNED: {newAmount}";
+        _walletAmountAfterDeathTextUI.text = $"Wallet: {_playerData.WalletAmount}";
     }
 
     public void AddScore(int value)
@@ -81,10 +80,9 @@ public class Player : MonoBehaviour
     }
     public void AddWallet()
     {
-        int numberCoins = _currentScore * _coinAmount / 2;
-        _playerData.WalletAmount += numberCoins;
-
-        UpdateCoinUI(numberCoins);
+        int newAmount = _currentScore / 2;
+        _playerData.WalletAmount += newAmount;
+        UpdateCoinUI(newAmount);
     }
 
     public void CheckAndSaveHighScore()

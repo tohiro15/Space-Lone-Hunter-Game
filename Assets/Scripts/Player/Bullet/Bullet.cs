@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
             if (_player != null)
             {
                 _player.AddScore(1);
-                _player.AddWallet();
             }
             else Debug.Log("The player is not initialized!");
         }

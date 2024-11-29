@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +11,8 @@ public class ShopManager : MonoBehaviour
         public string itemName;
         public Sprite ItemImage;
         public int Price;
+        public int currentPurchase;
+        public int totalPurchase;
     }
 
     [Header("Item Settings")]
@@ -24,14 +25,15 @@ public class ShopManager : MonoBehaviour
 
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
+    private PlayerDataManager _playerDataManager;
 
-    private PurchaseText _purchaseTextScript;
+    private const string CurrenttPurchace = "CurrentPurchase";
 
     private void Start()
     {
-        _purchaseTextScript = GetComponent<PurchaseText>();
-
         _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
+
+        _playerDataManager = GetComponent<PlayerDataManager>();
 
         PopulateShop();
     }
@@ -39,17 +41,35 @@ public class ShopManager : MonoBehaviour
     {
         foreach (ShopItem item in items)
         {
+            item.currentPurchase = PlayerPrefs.GetInt(CurrenttPurchace, 0);
+
             GameObject newItem = Instantiate(itemPrefab, contentPanel);
 
             newItem.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.itemName;
             newItem.transform.Find("ItemImage").GetComponent<Image>().sprite = item.ItemImage;
+            newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";
             newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
-            newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item));
+            newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item, newItem));
         }
     }
-    public void BuyItem(ShopItem item)
+    public void BuyItem(ShopItem item, GameObject newItem)
     {
-        Debug.Log("Предмет куплен.");
+        if(_playerData.WalletAmount < item.Price)
+        {
+            Debug.Log("Недостаточно монет!");
+        }
+        else if (_playerData.WalletAmount >= item.Price)
+        {
+            if (item.currentPurchase < item.totalPurchase)
+            {
+                _playerData.FireRate -= 0.1f;
+                item.currentPurchase += 1;
+                newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";
+
+                _playerDataManager.SavePlayerData();
+                PlayerPrefs.SetInt(CurrenttPurchace, item.currentPurchase);
+            }
+        }
     }
 
 }

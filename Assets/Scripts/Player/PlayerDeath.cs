@@ -18,6 +18,7 @@ public class PlayerDeath : MonoBehaviour
             _player.ScoreUI.SetActive(false);
             _player.PauseButtonUI.SetActive(false);
 
+            _player.AddWallet();
             _player.CheckAndSaveHighScore();
             _playerDataManager.SavePlayerData();
         }
