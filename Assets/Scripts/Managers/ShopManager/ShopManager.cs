@@ -62,6 +62,9 @@ public class ShopManager : MonoBehaviour
         {
             if (item.currentPurchase < item.totalPurchase)
             {
+                _playerData.WalletAmount -= item.Price;
+                _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
+
                 _playerData.FireRate -= 0.1f;
                 item.currentPurchase += 1;
                 newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";

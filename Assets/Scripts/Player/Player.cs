@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentCoinsEarnedUI;
 
     private PlayerController _controller;
-    private BulletSpawn _bulletSpawner;
+    [SerializeField] BulletSpawn _bulletSpawner1;
+    [SerializeField] BulletSpawn _bulletSpawner2;
     private void Start()
     {
         UpdateScoreUI();
@@ -46,7 +47,6 @@ public class Player : MonoBehaviour
 
         _controller = GetComponentInChildren<PlayerController>();
 
-        _bulletSpawner = GetComponentInChildren<BulletSpawn>();
     }
     private void Update()
     {
@@ -54,7 +54,8 @@ public class Player : MonoBehaviour
 
         if (Time.time >= nextFireTime)
         {
-            _bulletSpawner.Spawn(_bulletPrefab);
+            _bulletSpawner1.Spawn(_bulletPrefab);
+            _bulletSpawner2.Spawn(_bulletPrefab);
             nextFireTime = Time.time + _playerData.FireRate;
         }
     }

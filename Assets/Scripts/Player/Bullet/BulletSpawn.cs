@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BulletSpawn : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    private Player _player;
 
     private void Start()
     {
