@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerPrefsSystem _playerPS;
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -10,10 +10,9 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
-
-            if (_player != null)
+            if (_playerPS != null)
             {
-                _player.AddScore(1);
+                _playerPS.AddWallet(1);
             }
             else Debug.Log("The player is not initialized!");
         }
@@ -27,8 +26,8 @@ public class Bullet : MonoBehaviour
     }
 
 
-    public void Initialize(Player player)
+    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem)
     {
-        _player = player;
+        _playerPS = PlayerPrefsSystem;
     }
 }

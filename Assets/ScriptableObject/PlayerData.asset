@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8541ceb441b74240934469dcb2b3c56, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  WalletAmount: 130
-  FireRate: 0.79999995
+  _speed: 6
+  WalletAmount: 0
+  FireRate: 1
+  CurrentScore: 0

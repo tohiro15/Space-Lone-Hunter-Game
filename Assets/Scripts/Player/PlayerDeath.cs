@@ -2,25 +2,24 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] private Player _player;
-    private PlayerDataManager _playerDataManager;
+    [SerializeField] private UIManager _uiManager;
+    private PlayerPrefsSystem _playerPS;
+    private PlayerDataManager _playerDM;
     private void Start()
     {
-        _player = GetComponentInParent<Player>();
-        _playerDataManager = GetComponentInParent<PlayerDataManager>();
+        _playerPS = GetComponentInParent<PlayerPrefsSystem>();
+        _playerDM = GetComponentInParent<PlayerDataManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             Time.timeScale = 0;
-            _player.GameOverUI.SetActive(true);
-            _player.ScoreUI.SetActive(false);
-            _player.PauseButtonUI.SetActive(false);
+            _uiManager.GameOverUI.SetActive(true);
+            _uiManager.HUD.SetActive(false);
+            _uiManager.PauseButton.SetActive(false);
 
-            _player.AddWallet();
-            _player.CheckAndSaveHighScore();
-            _playerDataManager.SavePlayerData();
+            _playerDM.SavePlayerData();
         }
     }
 }

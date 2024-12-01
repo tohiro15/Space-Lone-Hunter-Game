@@ -16,6 +16,10 @@ public class EnemySpawner : MonoBehaviour
     {
         if(_canSpawn) StartCoroutine(Spawn());
     }
+    public void IncreaseSpawnSpeed()
+    {
+        _spawnSpeed -= 0.01f;
+    }
 
     IEnumerator Spawn()
     {
@@ -23,11 +27,12 @@ public class EnemySpawner : MonoBehaviour
 
         int randomPoint = Random.Range(0, _spawnPoints.Length);
 
-        Instantiate(_enemyPrefab, _spawnPoints[randomPoint]);
+        GameObject enemy = Instantiate(_enemyPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
 
         yield return new WaitForSeconds(_spawnSpeed);
 
-        if(_spawnSpeed > _maxSpawnSpeed ) _spawnSpeed -= 0.001f;
+        if (_spawnSpeed > _maxSpawnSpeed) enemyScript.OnEnemyDestroyed += IncreaseSpawnSpeed;
 
         _canSpawn = true;
     }

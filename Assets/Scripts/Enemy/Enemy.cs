@@ -7,6 +7,13 @@ public class Enemy : MonoBehaviour
 
     private EnemyController _controller;
 
+    public delegate void EnemyDestroyed();
+    public event EnemyDestroyed OnEnemyDestroyed;
+
+    private void OnDestroy()
+    {
+        OnEnemyDestroyed?.Invoke();
+    }
     void Start()
     {
         _controller = GetComponentInChildren<EnemyController>();

@@ -11,6 +11,7 @@ public class ShopManager : MonoBehaviour
         public string itemName;
         public Sprite ItemImage;
         public int Price;
+        public int IncreasedPrice;
         public int currentPurchase;
         public int totalPurchase;
     }
@@ -25,7 +26,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
-    private PlayerDataManager _playerDataManager;
+    private PlayerDataManager _playerDM;
 
     private const string CurrenttPurchace = "CurrentPurchase";
 
@@ -33,7 +34,7 @@ public class ShopManager : MonoBehaviour
     {
         _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
 
-        _playerDataManager = GetComponent<PlayerDataManager>();
+        _playerDM = GetComponent<PlayerDataManager>();
 
         PopulateShop();
     }
@@ -67,9 +68,11 @@ public class ShopManager : MonoBehaviour
 
                 _playerData.FireRate -= 0.1f;
                 item.currentPurchase += 1;
+                item.Price += item.IncreasedPrice;
                 newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";
+                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
 
-                _playerDataManager.SavePlayerData();
+                _playerDM.SavePlayerData();
                 PlayerPrefs.SetInt(CurrenttPurchace, item.currentPurchase);
             }
         }

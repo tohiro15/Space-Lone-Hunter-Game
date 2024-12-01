@@ -657,6 +657,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 439562127}
+  - component: {fileID: 439562131}
+  - component: {fileID: 439562130}
+  - component: {fileID: 439562129}
+  - component: {fileID: 439562128}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -681,6 +685,58 @@ Transform:
   - {fileID: 516044035}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &439562128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439562126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df353b58faad4ce45b605932e933bdd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 1
+--- !u!114 &439562129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439562126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df353b58faad4ce45b605932e933bdd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 1
+--- !u!114 &439562130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439562126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df353b58faad4ce45b605932e933bdd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 1
+--- !u!114 &439562131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439562126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df353b58faad4ce45b605932e933bdd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 1
 --- !u!1 &516044034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,8 +1865,9 @@ MonoBehaviour:
   items:
   - itemName: Fire Speed
     ItemImage: {fileID: 21300000, guid: 9d973edf4708f0241a37fde679521310, type: 3}
-    Price: 50
-    currentPurchase: 0
+    Price: 100
+    IncreasedPrice: 50
+    currentPurchase: 5
     totalPurchase: 5
   itemPrefab: {fileID: 8777727553973496324, guid: 0d109a1934b6a7b47b5728e91d65c740, type: 3}
   contentPanel: {fileID: 222968264}
@@ -1845,7 +1902,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
-  _walletAmountTextUI: {fileID: 802344989}
 --- !u!1 &1684340621
 GameObject:
   m_ObjectHideFlags: 0
