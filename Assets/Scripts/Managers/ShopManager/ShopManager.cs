@@ -8,12 +8,16 @@ public class ShopManager : MonoBehaviour
     [System.Serializable]
     public class ShopItem
     {
-        public string itemName;
+        public string ItemName;
         public Sprite ItemImage;
+
+        public string Description;
+
         public int Price;
         public int IncreasedPrice;
-        public int currentPurchase;
-        public int totalPurchase;
+
+        public int CurrentPurchase;
+        public int TotalPurchase;
     }
 
     [Header("Item Settings")]
@@ -28,7 +32,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private PlayerData _playerData;
     private PlayerDataManager _playerDM;
 
-    private const string CurrenttPurchace = "CurrentPurchase";
+    private const string CurrentPurchace = "CurrentPurchase";
+    private const string Price = "Price";
 
     private void Start()
     {
@@ -42,40 +47,45 @@ public class ShopManager : MonoBehaviour
     {
         foreach (ShopItem item in items)
         {
-            item.currentPurchase = PlayerPrefs.GetInt(CurrenttPurchace, 0);
+            item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CurrentPurchace, item), 0);
+            item.Price = PlayerPrefs.GetInt(GetUniqueKey(Price, item), item.Price);
 
             GameObject newItem = Instantiate(itemPrefab, contentPanel);
 
-            newItem.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.itemName;
+            newItem.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.ItemName;
             newItem.transform.Find("ItemImage").GetComponent<Image>().sprite = item.ItemImage;
-            newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";
+            newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = item.Description;
+            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
             newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
             newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item, newItem));
         }
     }
     public void BuyItem(ShopItem item, GameObject newItem)
     {
-        if(_playerData.WalletAmount < item.Price)
+        if (_playerData.WalletAmount < item.Price)
         {
             Debug.Log("Недостаточно монет!");
         }
-        else if (_playerData.WalletAmount >= item.Price)
+        else if (_playerData.WalletAmount >= item.Price && item.CurrentPurchase < item.TotalPurchase)
         {
-            if (item.currentPurchase < item.totalPurchase)
-            {
-                _playerData.WalletAmount -= item.Price;
-                _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
+            _playerData.WalletAmount -= item.Price;
+            _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
 
-                _playerData.FireRate -= 0.1f;
-                item.currentPurchase += 1;
-                item.Price += item.IncreasedPrice;
-                newItem.transform.Find("ItemImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{item.currentPurchase.ToString()}/{item.totalPurchase.ToString()}";
-                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
+            _playerData.FireRate -= 0.1f;
+            item.CurrentPurchase += 1;
+            item.Price += item.IncreasedPrice;
+            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
+            newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
 
-                _playerDM.SavePlayerData();
-                PlayerPrefs.SetInt(CurrenttPurchace, item.currentPurchase);
-            }
+            _playerDM.SavePlayerData();
+            PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);
+            PlayerPrefs.SetInt(GetUniqueKey(Price, item), item.Price);
+            PlayerPrefs.Save();
         }
     }
 
+    private string GetUniqueKey(string baseKey, ShopItem item)
+    {
+        return $"{baseKey}_{item.ItemName}";
+    }
 }

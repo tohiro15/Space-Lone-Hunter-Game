@@ -11,19 +11,20 @@ public class InteractionToShopMenu : MonoBehaviour
 
     [SerializeField] private Slider _loadingBar;
     [SerializeField] private TextMeshProUGUI _loadingText;
-    public void OpenMenu()
+    public void OpenShopMenu()
     {
         _loadingCanvas.SetActive(true);
 
         StartCoroutine(AsyncLoadingScene("Shop"));
     }
 
-    public void CloseMenu()
+    public void ClosedShopMenu(string sceneName)
     {
         _loadingCanvas.SetActive(true);
 
-        StartCoroutine(AsyncLoadingScene("Game"));
+        StartCoroutine(AsyncLoadingScene(sceneName));
     }
+
 
     IEnumerator AsyncLoadingScene(string sceneName)
     {

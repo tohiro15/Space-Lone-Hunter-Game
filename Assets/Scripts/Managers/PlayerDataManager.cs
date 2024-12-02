@@ -6,10 +6,6 @@ public class PlayerDataManager : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
 
-    private void Start()
-    {
-        _playerData.CurrentScore = 0;
-    }
     public void SavePlayerData()
     {
         if (_playerData != null)

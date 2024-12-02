@@ -15,10 +15,12 @@ public class PlayerDeath : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Time.timeScale = 0;
+
+            _uiManager.UpdateGameOverUI();
+
             _uiManager.GameOverUI.SetActive(true);
             _uiManager.HUD.SetActive(false);
             _uiManager.PauseButton.SetActive(false);
-
             _playerDM.SavePlayerData();
         }
     }

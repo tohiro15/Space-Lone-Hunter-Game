@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _speed: 6
-  WalletAmount: 0
+  WalletAmount: 2147476811
   FireRate: 1
   CurrentScore: 0

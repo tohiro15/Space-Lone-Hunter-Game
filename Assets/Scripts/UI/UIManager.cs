@@ -14,33 +14,31 @@ public class UIManager : MonoBehaviour
 
     [Header("Game UI Elements")]
     [SerializeField] private TextMeshProUGUI _currentCoinsEarnedUI;
-    [SerializeField] private TextMeshProUGUI _walletAmountTextUI;
+
     [Header("GameOver UI Elements")]
     [SerializeField] private TextMeshProUGUI _walletAmountAfterDeathTextUI;
-    [SerializeField] private TextMeshProUGUI _currentScoreTextUI;
+    [SerializeField] private TextMeshProUGUI _coinsEarnedUI;
 
     private void Start()
     {
-        _walletAmountTextUI.text = $"WALLET: {_playerData.WalletAmount}";
-        _currentCoinsEarnedUI.text = $"CURRENT COINS EARNED: 0";
+        _currentCoinsEarnedUI.text = $"COLLECTED COINS: 0";
 
         HUD.SetActive(true);
     }
 
     public void UpdateCoinUI(int amount)
     {
-        _currentCoinsEarnedUI.text = $"COLLECT COINS AMOUNT: {amount}";
-        _walletAmountTextUI.text = $"WALLET: {_playerData.WalletAmount}";
-        _walletAmountAfterDeathTextUI.text = _walletAmountTextUI.text;
+        _currentCoinsEarnedUI.text = $"COLLECTED COINS: {amount}";
     }
 
+    public void UpdateGameOverUI()
+    {
+        _coinsEarnedUI.text = _currentCoinsEarnedUI.text;
+        _walletAmountAfterDeathTextUI.text = $"WALLET: {_playerData.WalletAmount}";
+    }
     public void SetCurrentCoinsEarnedUI(string text)
     {
         _currentCoinsEarnedUI.text = text;
-    }
-    public void SetWalletAmountTextUI(string text)
-    {
-        _walletAmountTextUI.text = text;
     }
     public void SetWalletAmountAfterDeathTextUI(string text)
     {

@@ -11,8 +11,6 @@ public class PlayerData : ScriptableObject
 
     public int WalletAmount = 0;
     public float FireRate = 1;
-
-    public int CurrentScore = 0;
     
     private void OnEnable()
     {
