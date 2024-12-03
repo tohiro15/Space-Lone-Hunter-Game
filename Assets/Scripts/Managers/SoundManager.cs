@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         if (_audioClips.Length > 0)
         {
             PlayClip(_currentClipIndex);
