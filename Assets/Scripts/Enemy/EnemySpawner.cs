@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
 
+    [SerializeField] private PlayerPrefsSystem _playerPS;
+
     private bool _canSpawn = true;
     private void Update()
     {
@@ -29,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(_enemyPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
+        enemyScript.Initialize(_playerPS);
 
         yield return new WaitForSeconds(_spawnSpeed);
 

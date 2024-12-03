@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
     public class ShopItem
     {
         public string ItemName;
-        public Sprite ItemImage;
+        public Sprite ButtonImage;
 
         public string Description;
 
@@ -52,12 +52,12 @@ public class ShopManager : MonoBehaviour
 
             GameObject newItem = Instantiate(itemPrefab, contentPanel);
 
+            newItem.transform.Find("ButtonImage").GetComponent<Image>().sprite = item.ButtonImage;
             newItem.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.ItemName;
-            newItem.transform.Find("ItemImage").GetComponent<Image>().sprite = item.ItemImage;
             newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = item.Description;
-            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
-            newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
+            newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE:\n{item.Price.ToString()} COINS";
             newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item, newItem));
+            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
         }
     }
     public void BuyItem(ShopItem item, GameObject newItem)
@@ -75,7 +75,7 @@ public class ShopManager : MonoBehaviour
             item.CurrentPurchase += 1;
             item.Price += item.IncreasedPrice;
             newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
-            newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE: {item.Price.ToString()} COINS";
+            newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"PRICE:\n{item.Price.ToString()} COINS";
 
             _playerDM.SavePlayerData();
             PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);

@@ -2,22 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawn : MonoBehaviour
+public class BulletSpawner : MonoBehaviour
 {
+    [Header("Bullet Settings")]
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] private Transform[] _bulletSpawners;
+    [SerializeField] private float nextFireTime = 0f;
+
+    [Header("Player Data | Scriptable Object")]
+    [SerializeField] private PlayerData _playerData;
+
     private PlayerPrefsSystem _playerPS;
 
     private void Start()
     {
         _playerPS = GetComponentInParent<PlayerPrefsSystem>();
     }
+
+    private void Update()
+    {
+        UpdateNextFireTime();
+    }
     public void Spawn(GameObject bulletPrefab, Transform[] bulletSpawners)
     {
         Bullet bulletScript = bulletPrefab.GetComponent<Bullet>();
-        bulletScript.Initialize(_playerPS);
 
         foreach (Transform bulletSpawner in bulletSpawners)
         {
             StartCoroutine(Spawner(bulletPrefab, bulletSpawner));
+        }
+    }
+    private void UpdateNextFireTime()
+    {
+        if (Time.time >= nextFireTime)
+        {
+            Spawn(_bulletPrefab, _bulletSpawners);
+            nextFireTime = Time.time + _playerData.FireRate;
         }
     }
 

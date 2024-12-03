@@ -2517,7 +2517,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661310533}
-  - component: {fileID: 661310534}
   m_Layer: 0
   m_Name: BulletSpawner2
   m_TagString: Untagged
@@ -2540,18 +2539,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1957968997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &661310534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661310532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4542be3118fe0489dff7d9cc7c3e36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &670350261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,7 +3778,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186018575}
-  - component: {fileID: 1186018576}
   m_Layer: 0
   m_Name: BulletSpawner1
   m_TagString: Untagged
@@ -3814,18 +3800,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1957968997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186018576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186018574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4542be3118fe0489dff7d9cc7c3e36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1216962474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,6 +4828,7 @@ MonoBehaviour:
   - {fileID: 2092613882}
   - {fileID: 770847492}
   - {fileID: 1612100881}
+  _playerPS: {fileID: 1991688285}
 --- !u!4 &1846803269
 Transform:
   m_ObjectHideFlags: 0
@@ -5126,6 +5101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957968997}
+  - component: {fileID: 1957968998}
   m_Layer: 0
   m_Name: Spawners
   m_TagString: Untagged
@@ -5150,6 +5126,24 @@ Transform:
   - {fileID: 661310533}
   m_Father: {fileID: 1991688281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1957968998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957968996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4542be3118fe0489dff7d9cc7c3e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 7097414585687021107, guid: c5382f0d5660d9c40855335c15e3ab3d, type: 3}
+  _bulletSpawners:
+  - {fileID: 1186018575}
+  - {fileID: 661310533}
+  nextFireTime: 0
+  _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
 --- !u!1 &1964689300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,11 +5420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
-  _bulletPrefab: {fileID: 7097414585687021107, guid: c5382f0d5660d9c40855335c15e3ab3d, type: 3}
-  _bulletSpawners:
-  - {fileID: 1186018575}
-  - {fileID: 661310533}
-  nextFireTime: 0
 --- !u!82 &1991688283
 AudioSource:
   m_ObjectHideFlags: 0
