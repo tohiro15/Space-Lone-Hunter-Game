@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private SoundManager _soundManager;
     private PlayerPrefsSystem _playerPS;
     private PlayerDataManager _playerDM;
     private void Start()
@@ -15,6 +16,8 @@ public class PlayerDeath : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Time.timeScale = 0;
+
+            _soundManager.StopClip();
 
             _uiManager.UpdateGameOverUI();
 
