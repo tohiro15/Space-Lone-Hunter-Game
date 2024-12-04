@@ -67,7 +67,7 @@ public class ShopManager : MonoBehaviour
             else
             {
                 newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"{item.Price.ToString()} COINS";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10%)";
+                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
             }
             newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item, newItem));
             newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
@@ -97,11 +97,11 @@ public class ShopManager : MonoBehaviour
             else
             {
                 newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"{item.Price.ToString()} COINS";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10%)";
+                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
             }
 
             _playerDM.SavePlayerData();
-            PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), 0);
+            PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);
             PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);
             PlayerPrefs.SetInt(GetUniqueKey(Price, item), item.Price);
             PlayerPrefs.Save();
