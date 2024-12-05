@@ -5135,9 +5135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe328c037790a142ba86e5da4416c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingCanvas: {fileID: 0}
-  _loadingBar: {fileID: 0}
-  _loadingText: {fileID: 0}
+  _loadingCanvas: {fileID: 854017802}
+  _loadingBar: {fileID: 1890368464}
+  _loadingText: {fileID: 1596837373}
 --- !u!114 &1846803271
 MonoBehaviour:
   m_ObjectHideFlags: 0
