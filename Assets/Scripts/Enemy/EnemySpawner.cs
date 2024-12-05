@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header ("Spawn Settings")]
+    [Header("Spawn Settings")]
     [SerializeField] private float _spawnSpeed;
-    [SerializeField] private float _maxSpawnSpeed;
 
     [Header("Enemy Settings")]
+    [SerializeField] private int _enemyHealth;
+    [SerializeField] private float _enemySpeed;
+    [SerializeField] private float _enemyMaxSpeed;
+
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
 
@@ -18,9 +21,9 @@ public class EnemySpawner : MonoBehaviour
     {
         if(_canSpawn) StartCoroutine(Spawn());
     }
-    public void IncreaseSpawnSpeed()
+    public void IncreaseSpeed()
     {
-        _spawnSpeed -= 0.01f;
+        _enemySpeed += 0.1f;
     }
 
     IEnumerator Spawn()
@@ -31,11 +34,11 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(_enemyPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
-        enemyScript.Initialize(_playerPS);
+        enemyScript.Initialize(_playerPS, _enemyHealth, _enemySpeed);
 
         yield return new WaitForSeconds(_spawnSpeed);
 
-        if (_spawnSpeed > _maxSpawnSpeed) enemyScript.OnEnemyDestroyed += IncreaseSpawnSpeed;
+        if (_enemySpeed < _enemyMaxSpeed) enemyScript.OnEnemyDestroyed += IncreaseSpeed;
 
         _canSpawn = true;
     }

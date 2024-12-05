@@ -21,14 +21,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        _currentCoinsEarnedUI.text = $"COLLECTED COINS: 0";
+        _currentCoinsEarnedUI.text = $"Earned: 0";
 
         HUD.SetActive(true);
     }
 
     public void UpdateCoinUI(int amount)
     {
-        _currentCoinsEarnedUI.text = $"COLLECTED COINS: {amount}";
+        _currentCoinsEarnedUI.text = $"Earned: {amount}";
     }
 
     public void UpdateGameOverUI()

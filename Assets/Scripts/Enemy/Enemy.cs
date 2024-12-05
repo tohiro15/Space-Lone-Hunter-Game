@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Statistic Settings")]
-    [SerializeField] private float _speed;
+    private int _health = 1;
+    private float _speed = 3;
 
     private int _numberBulletHits = 0;
 
@@ -13,9 +13,11 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyDestroyed();
     public event EnemyDestroyed OnEnemyDestroyed;
 
-    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem)
+    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem, int health, float speed)
     {
         _playerPS = PlayerPrefsSystem;
+        _health = health;
+        _speed = speed;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

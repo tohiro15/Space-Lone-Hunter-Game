@@ -12,6 +12,9 @@ public class BulletSpawner : MonoBehaviour
     [Header("Player Data | Scriptable Object")]
     [SerializeField] private PlayerData _playerData;
 
+    [Header("Sound settings")]
+    [SerializeField] private SoundManager _soundManager;
+
     private PlayerPrefsSystem _playerPS;
 
     private void Start()
@@ -45,5 +48,6 @@ public class BulletSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        _soundManager.ShootingClip();
     }
 }

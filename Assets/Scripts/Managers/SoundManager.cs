@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource _audioSource;
-    [SerializeField] private AudioClip[] _audioClips;
+    private AudioSource _baseSource;
+    [SerializeField] private AudioSource _playerSource;
+
+    [SerializeField] private AudioClip[] _music;
+    [SerializeField] private AudioClip _shooting;
 
     private int _currentClipIndex = 0;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-        if (_audioClips.Length > 0)
+        _baseSource = GetComponent<AudioSource>();
+        if (_music.Length > 0)
         {
             PlayClip(_currentClipIndex);
         }
     }
     public void PlayClip(int index)
     {
-        if (index >= 0 && index < _audioClips.Length)
+        if (index >= 0 && index < _music.Length)
         {
-            _audioSource.clip = _audioClips[index];
-            _audioSource.Play();
+            _baseSource.clip = _music[index];
+            _baseSource.Play();
             _currentClipIndex = index;
         }
         else
@@ -30,9 +33,13 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Индекс аудиоклипа вне массива!");
         }
     }
+    public void ShootingClip()
+    {
+        _playerSource.PlayOneShot(_shooting);
+    }
 
     public void StopClip()
     {
-        _audioSource.Stop();
+        _baseSource.Stop();
     }
 }
