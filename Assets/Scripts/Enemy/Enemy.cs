@@ -25,12 +25,11 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            _soundManager.DestoyedEnemy();
-
             Destroy(other.gameObject);
             Destroy(gameObject);
             if (_playerPS != null && _numberBulletHits < 1)
             {
+                _soundManager.DestoyedEnemy();
                 _playerPS.AddWallet(1);
                 _numberBulletHits++;
             }

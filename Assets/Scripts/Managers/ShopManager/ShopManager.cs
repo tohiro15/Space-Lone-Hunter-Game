@@ -79,11 +79,7 @@ public class ShopManager : MonoBehaviour
     }
     public void BuyItem(ShopItem item, GameObject newItem)
     {
-        if (_playerData.WalletAmount < item.Price)
-        {
-            Debug.Log("Недостаточно монет!");
-        }
-        else if (_playerData.WalletAmount >= item.Price && item.CurrentPurchase < item.TotalPurchase)
+        if (_playerData.WalletAmount >= item.Price && item.CurrentPurchase < item.TotalPurchase)
         {
             _playerData.WalletAmount -= item.Price;
             _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
@@ -106,7 +102,9 @@ public class ShopManager : MonoBehaviour
             }
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
+
             _playerDM.SavePlayerData();
+
             PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);
             PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);
             PlayerPrefs.SetInt(GetUniqueKey(Price, item), item.Price);

@@ -990,7 +990,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 989626240}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9158206
+  m_Size: 0.9628256
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1574,7 +1574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000023766896}
+  m_AnchoredPosition: {x: 0, y: 0.00009939945}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &892928616
@@ -2563,6 +2563,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 8777727553973496324, guid: 0d109a1934b6a7b47b5728e91d65c740, type: 3}
   contentPanel: {fileID: 892928615}
   _walletUGUI: {fileID: 802344989}
+  _baseAudioSource: {fileID: 516044036}
+  _buySoundClip: {fileID: 8300000, guid: f04d83a1b5ab1474a8caef5885440c2a, type: 3}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
 --- !u!114 &1311750122
 MonoBehaviour:
