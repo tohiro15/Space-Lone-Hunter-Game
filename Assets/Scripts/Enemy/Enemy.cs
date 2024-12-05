@@ -9,13 +9,15 @@ public class Enemy : MonoBehaviour
 
     private EnemyController _controller;
     private PlayerPrefsSystem _playerPS;
+    private SoundManager _soundManager;
 
     public delegate void EnemyDestroyed();
     public event EnemyDestroyed OnEnemyDestroyed;
 
-    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem, int health, float speed)
+    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem, SoundManager SoundManager, int health, float speed)
     {
         _playerPS = PlayerPrefsSystem;
+        _soundManager = SoundManager;
         _health = health;
         _speed = speed;
     }
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
+            _soundManager.DestoyedEnemy();
+
             Destroy(other.gameObject);
             Destroy(gameObject);
             if (_playerPS != null && _numberBulletHits < 1)

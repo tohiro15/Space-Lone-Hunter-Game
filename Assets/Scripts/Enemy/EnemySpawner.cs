@@ -14,7 +14,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
 
+    [Header("Other")]
     [SerializeField] private PlayerPrefsSystem _playerPS;
+
+    [SerializeField] private SoundManager _soundManager;
 
     private bool _canSpawn = true;
     private void Update()
@@ -34,11 +37,14 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(_enemyPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
-        enemyScript.Initialize(_playerPS, _enemyHealth, _enemySpeed);
+        enemyScript.Initialize(_playerPS, _soundManager, _enemyHealth, _enemySpeed);
 
         yield return new WaitForSeconds(_spawnSpeed);
 
-        if (_enemySpeed < _enemyMaxSpeed) enemyScript.OnEnemyDestroyed += IncreaseSpeed;
+        if (_enemySpeed < _enemyMaxSpeed)
+        {
+            enemyScript.OnEnemyDestroyed += IncreaseSpeed;
+        }
 
         _canSpawn = true;
     }

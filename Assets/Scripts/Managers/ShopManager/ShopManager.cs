@@ -31,6 +31,10 @@ public class ShopManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI _walletUGUI;
 
+    [Header("Sound effects")]
+    [SerializeField] private AudioSource _baseAudioSource;
+    [SerializeField] private AudioClip _buySoundClip;
+
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
     private PlayerDataManager _playerDM;
@@ -88,6 +92,7 @@ public class ShopManager : MonoBehaviour
             item.CurrentValue += 10;
             item.CurrentPurchase += 1;
             item.Price += item.IncreasedPrice;
+
             newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
             if (item.CurrentPurchase >= item.TotalPurchase)
             {
@@ -100,6 +105,7 @@ public class ShopManager : MonoBehaviour
                 newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
             }
 
+            _baseAudioSource.PlayOneShot(_buySoundClip);
             _playerDM.SavePlayerData();
             PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);
             PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);

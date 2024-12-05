@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _speed: 6
-  WalletAmount: 0
+  WalletAmount: 239
   FireRate: 1
