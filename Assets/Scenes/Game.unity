@@ -3595,9 +3595,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_audioClip: {fileID: 8300000, guid: 4576721b7785c75408c8c1486a41dbdb, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4140,7 +4140,7 @@ MonoBehaviour:
   _music:
   - {fileID: 8300000, guid: 87d247032cc18314083e2c4229104bfd, type: 3}
   _shooting: {fileID: 8300000, guid: 18dd0c46218326f43957d53e658a324c, type: 3}
-  _destoyed: {fileID: 8300000, guid: 47d43fbbf2ff14f4e988ff63c5f07fae, type: 3}
+  _destroyEnemy: {fileID: 8300000, guid: 4576721b7785c75408c8c1486a41dbdb, type: 3}
 --- !u!1 &1238364056
 GameObject:
   m_ObjectHideFlags: 0
@@ -5135,6 +5135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe328c037790a142ba86e5da4416c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadingCanvas: {fileID: 0}
+  _loadingBar: {fileID: 0}
+  _loadingText: {fileID: 0}
 --- !u!114 &1846803271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5846,7 +5849,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 18dd0c46218326f43957d53e658a324c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1

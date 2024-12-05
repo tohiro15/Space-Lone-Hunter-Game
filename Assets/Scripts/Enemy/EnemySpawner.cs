@@ -16,13 +16,16 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private PlayerPrefsSystem _playerPS;
-
     [SerializeField] private SoundManager _soundManager;
+
 
     private bool _canSpawn = true;
     private void Update()
     {
-        if(_canSpawn) StartCoroutine(Spawn());
+        foreach (Transform point in _spawnPoints)
+        {
+            if (_canSpawn) StartCoroutine(Spawn());
+        }
     }
     public void IncreaseSpeed()
     {
