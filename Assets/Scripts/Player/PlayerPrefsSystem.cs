@@ -10,7 +10,6 @@ public class PlayerPrefsSystem : MonoBehaviour
 
     private Player _player;
 
-    private int Collected—oinsAmount = 0;
 
     private void Start()
     {
@@ -18,10 +17,8 @@ public class PlayerPrefsSystem : MonoBehaviour
     }
     public void AddWallet(int value)
     {
-        Collected—oinsAmount++;
+        _playerData.Collected—oinsAmount++;
 
         _playerData.WalletAmount += value;
-
-        _uiManager.UpdateCoinUI(Collected—oinsAmount);
     }
 }

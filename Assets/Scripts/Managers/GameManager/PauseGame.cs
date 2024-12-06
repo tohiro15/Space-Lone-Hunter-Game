@@ -45,7 +45,7 @@ public class PauseGame : MonoBehaviour
         {
             _timer.text = $"{seconds}";
             seconds--;
-            yield return new WaitForSecondsRealtime(1);
+            yield return null;
         }
         Time.timeScale = 1;
 

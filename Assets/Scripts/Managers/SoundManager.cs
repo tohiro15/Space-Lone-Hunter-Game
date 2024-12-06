@@ -9,7 +9,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _enemySource;
 
     [SerializeField] private AudioClip[] _music;
+    [SerializeField] private AudioClip _victorySound;
+
+    [Header("Player Sounds Effects")]
     [SerializeField] private AudioClip _shooting;
+
+    [Header("Enemy Sounds Effects")]
     [SerializeField] private AudioClip _destroyEnemy;
 
     private int _currentClipIndex = 0;
@@ -44,7 +49,11 @@ public class SoundManager : MonoBehaviour
     {
         _enemySource.PlayOneShot(_destroyEnemy);
     }
-
+    public void VictoryClip()
+    {
+        _baseSource.Stop();
+        _baseSource.PlayOneShot(_victorySound);
+    }
     public void StopClip()
     {
         _baseSource.Stop();

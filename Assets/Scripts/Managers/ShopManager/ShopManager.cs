@@ -37,7 +37,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
-    private PlayerDataManager _playerDM;
+    [SerializeField] private PlayerDataManager _playerDM;
 
     private const string CurrentValue = "CurrentValue";
     private const string CurrentPurchace = "CurrentPurchase";
@@ -46,8 +46,6 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
-
-        _playerDM = GetComponent<PlayerDataManager>();
 
         PopulateShop();
     }
@@ -103,7 +101,7 @@ public class ShopManager : MonoBehaviour
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
 
-            _playerDM.SavePlayerData();
+            _playerDM.SavePlayerDataAfterShop();
 
             PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);
             PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);
@@ -111,7 +109,6 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-
     private string GetUniqueKey(string baseKey, ShopItem item)
     {
         return $"{baseKey}_{item.ItemName}";
