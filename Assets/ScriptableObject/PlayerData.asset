@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   StartStageDuration: 30
-  StageDuration: 30
-  StagePassed: 1
-  RecordStage: 4
+  StageDuration: 2
+  StagePassed: 2
+  RecordStage: 2
   _speed: 6
   "Collected\u0421oinsAmount": 0
-  WalletAmount: 62
+  WalletAmount: 0
   FireRate: 1

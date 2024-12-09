@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public void Movement(float speed, GameObject enemy, EnemyPool enemyPool)
+    public void Movement(float speed, GameObject enemy)
     {
-        if (enemy.transform.position.y < -5f) enemyPool.ReturnEnemy(gameObject); ;
+        if (enemy.transform.position.y < -5f) Destroy(enemy);
 
         Vector2 newPosition = enemy.transform.position;
 
