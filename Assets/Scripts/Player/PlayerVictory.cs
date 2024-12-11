@@ -6,11 +6,6 @@ public class PlayerVictory : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
 
     [SerializeField] private PlayerData _playerData;
-    [SerializeField] DataManager _dataManager;
-    private void Start()
-    {
-        _dataManager = GetComponent<DataManager>();
-    }
     public void Victory()
     {
         Time.timeScale = 0;
@@ -26,6 +21,6 @@ public class PlayerVictory : MonoBehaviour
 
         _playerData.StagePassed++;
 
-        _dataManager.SaveDataAfterVictory();
+        DataManager.Instance.SaveDataAfterVictory();
     }
 }

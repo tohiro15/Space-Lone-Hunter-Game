@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+    public static DataManager Instance;
+
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private EnemyData _enemyData;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
 
     private void Start()
     {

@@ -1,24 +1,30 @@
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private DataManager _dataManager;
     private SoundManager _soundManager;
     private int _health;
     private float _speed;
+
+    private TextMeshProUGUI _healthText;
 
     private bool _hit;
     private bool _isActive;
 
     public event System.Action<Enemy> OnEnemyDestroyed;
 
-    public void Initialize(DataManager DataManager, SoundManager soundManager, int health, float speed)
+    public void Initialize(SoundManager soundManager, int health, float speed)
     {
+        _healthText = GetComponentInChildren<TextMeshProUGUI>();
+        _healthText.text = health.ToString();
+
         _hit = false;
         _isActive = true; 
 
-        _dataManager = DataManager;
         _soundManager = soundManager;
+
+
         _health = health;
         _speed = speed;
     }
@@ -47,7 +53,7 @@ public class Enemy : MonoBehaviour
             if (!_hit)
             {
                 _hit = true;
-                _dataManager.AddWallet(1);
+                DataManager.Instance.AddWallet(1);
             }
 
             TakeDamage(1);
@@ -58,7 +64,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (!_isActive) return;
+
         _health -= damage;
+        _healthText.text = _health.ToString();
 
         if (_health <= 0)
         {

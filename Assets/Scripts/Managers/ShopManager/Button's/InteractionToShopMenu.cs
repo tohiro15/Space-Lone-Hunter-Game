@@ -11,11 +11,9 @@ public class InteractionToShopMenu : MonoBehaviour
 
     [SerializeField] private Slider _loadingBar;
     [SerializeField] private TextMeshProUGUI _loadingText;
-
-    [SerializeField] DataManager _dataManager;
     public void OpenShopMenu()
     {
-        _dataManager.SaveDataAfterDeath();
+        DataManager.Instance.SaveDataAfterDeath();
         _loadingCanvas.SetActive(true);
 
         PlayerPrefs.Save();

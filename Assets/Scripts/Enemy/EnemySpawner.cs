@@ -14,9 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
 
     [Header("Content")]
-    [SerializeField] private DataManager _dataManager;
-    [SerializeField] private PlayerData _playerData;
+    [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private PlayerData _playerData;
 
     private bool _canSpawn = true;
 
@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             enemyScript.OnEnemyDestroyed += OnEnemyDestroyed;
 
             float clampedSpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
-            enemyScript.Initialize(_dataManager, _soundManager, _enemyData.Health, clampedSpeed);
+            enemyScript.Initialize(_soundManager, _enemyData.Health, clampedSpeed);
         }
     }
 

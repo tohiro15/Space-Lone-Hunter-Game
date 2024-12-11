@@ -15,6 +15,6 @@ MonoBehaviour:
   StagePassed: 1
   RecordStage: 9
   _speed: 6
-  "Collected\u0421oinsAmount": 6
-  WalletAmount: 4411
+  "Collected\u0421oinsAmount": 0
+  WalletAmount: 4459
   FireRate: 0.4999999

@@ -37,7 +37,6 @@ public class ShopManager : MonoBehaviour
 
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
-    [SerializeField] private DataManager _dataManager;
 
     private const string CurrentValue = "CurrentValue";
     private const string CurrentPurchace = "CurrentPurchase";
@@ -103,7 +102,7 @@ public class ShopManager : MonoBehaviour
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
 
-            _dataManager.SaveDataAfterShop();
+            DataManager.Instance.SaveDataAfterShop();
 
             PlayerPrefs.SetFloat(PlayerData.FireRateKey, newFireRate);
             PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);

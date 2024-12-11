@@ -4,7 +4,6 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
-    [SerializeField] private DataManager _dataManager;
     private void Start()
     {
     }
@@ -18,7 +17,7 @@ public class PlayerDeath : MonoBehaviour
 
             _uiManager.UpdateGameOverUI();
 
-            _dataManager.SaveDataAfterDeath();
+            DataManager.Instance.SaveDataAfterDeath();
         }
     }
 }

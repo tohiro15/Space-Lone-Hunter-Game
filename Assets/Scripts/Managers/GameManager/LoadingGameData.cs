@@ -8,8 +8,6 @@ public class LoadingGameData : MonoBehaviour
 {
     [SerializeField] private Slider loadingBar;
     [SerializeField] private TextMeshProUGUI loadingText;
-
-    [SerializeField] DataManager _dataManager;
     private void Start()
     {
         StartCoroutine(LoadingAsync());
