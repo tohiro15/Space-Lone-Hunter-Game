@@ -4,14 +4,9 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
-
-    [SerializeField] private PlayerData _playerData;
-    private PlayerDataManager _playerDM;
-    private PlayerPrefsSystem _playerPS;
+    [SerializeField] private DataManager _dataManager;
     private void Start()
     {
-        _playerDM = GetComponentInParent<PlayerDataManager>();
-        _playerPS = GetComponentInParent<PlayerPrefsSystem>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +18,7 @@ public class PlayerDeath : MonoBehaviour
 
             _uiManager.UpdateGameOverUI();
 
-            _playerDM.SavePlayerDataAfterDeath();
+            _dataManager.SaveDataAfterDeath();
         }
     }
 }

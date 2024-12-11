@@ -2,53 +2,76 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int _health = 1;
-    private float _speed = 3;
-
-    private int _numberBulletHits = 0;
-
-    private EnemyController _controller;
-    private PlayerPrefsSystem _playerPS;
+    private DataManager _dataManager;
     private SoundManager _soundManager;
+    private int _health;
+    private float _speed;
 
-    public delegate void EnemyDestroyed();
-    public event EnemyDestroyed OnEnemyDestroyed;
+    private bool _hit;
+    private bool _isActive;
 
+    public event System.Action<Enemy> OnEnemyDestroyed;
 
-
-    public void Initialize(PlayerPrefsSystem PlayerPrefsSystem, SoundManager SoundManager,int health, float speed)
+    public void Initialize(DataManager DataManager, SoundManager soundManager, int health, float speed)
     {
-        _playerPS = PlayerPrefsSystem;
-        _soundManager = SoundManager;
+        _hit = false;
+        _isActive = true; 
 
+        _dataManager = DataManager;
+        _soundManager = soundManager;
         _health = health;
         _speed = speed;
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void Update()
     {
-        if (other.CompareTag("Bullet"))
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            if (_playerPS != null && _numberBulletHits < 1)
-            {
-                _soundManager.DestroyEnemyClip();
-                _playerPS.AddWallet(1);
-                _numberBulletHits++;
-            }
-        }
-    }
-    private void OnDestroy()
-    {
-        OnEnemyDestroyed?.Invoke();
-    }
-    void Start()
-    {
-        _controller = GetComponentInChildren<EnemyController>();
+        if (!_isActive) return;
+
+        if (transform.position.y < -5f) ReturnEnemyToPool();
+
+        Vector2 newPosition = gameObject.transform.position;
+
+        newPosition.y -= _speed * Time.deltaTime;
+
+        gameObject.transform.position = newPosition;
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D bullet)
     {
-        _controller.Movement(_speed, gameObject);
+
+        BulletPool.Instance.ReturnToPool(bullet.gameObject);
+
+        if (!_isActive) return;
+        if (bullet.CompareTag("Bullet"))
+        {
+            if (!_hit)
+            {
+                _hit = true;
+                _dataManager.AddWallet(1);
+            }
+
+            TakeDamage(1);
+            _soundManager.DestroyEnemyClip();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!_isActive) return;
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            OnEnemyDestroyed?.Invoke(this);
+            ReturnEnemyToPool();
+        }
+    }
+
+    private void ReturnEnemyToPool()
+    {
+        if (!_isActive) return;
+
+        _isActive = false;
+        EnemyPool.Instance.ReturnToPool(gameObject);
     }
 }

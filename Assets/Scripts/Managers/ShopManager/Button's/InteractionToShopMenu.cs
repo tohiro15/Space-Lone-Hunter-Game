@@ -11,9 +11,14 @@ public class InteractionToShopMenu : MonoBehaviour
 
     [SerializeField] private Slider _loadingBar;
     [SerializeField] private TextMeshProUGUI _loadingText;
+
+    [SerializeField] DataManager _dataManager;
     public void OpenShopMenu()
     {
+        _dataManager.SaveDataAfterDeath();
         _loadingCanvas.SetActive(true);
+
+        PlayerPrefs.Save();
 
         StartCoroutine(AsyncLoadingScene("Shop"));
     }
@@ -21,6 +26,8 @@ public class InteractionToShopMenu : MonoBehaviour
     public void ClosedShopMenu(string sceneName)
     {
         _loadingCanvas.SetActive(true);
+
+        PlayerPrefs.Save();
 
         StartCoroutine(AsyncLoadingScene(sceneName));
     }

@@ -1,7 +1,4 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerVictory : MonoBehaviour
 {
@@ -9,27 +6,26 @@ public class PlayerVictory : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
 
     [SerializeField] private PlayerData _playerData;
-    private PlayerDataManager _playerDM;
+    [SerializeField] DataManager _dataManager;
     private void Start()
     {
-        _playerDM = GetComponent<PlayerDataManager>();
+        _dataManager = GetComponent<DataManager>();
     }
     public void Victory()
     {
         Time.timeScale = 0;
 
-        _playerData.StagePassed++;
-        _playerData.StageDuration += 15;
+        _soundManager.VictoryClip();
+
+        _uiManager.UpdateVictoryGameUI();
 
         if (_playerData.StagePassed > _playerData.RecordStage)
         {
             _playerData.RecordStage = _playerData.StagePassed;
         }
 
-        _soundManager.VictoryClip();
+        _playerData.StagePassed++;
 
-        _uiManager.UpdateVictoryGameUI();
-
-        _playerDM.SavePlayerData();
+        _dataManager.SaveDataAfterVictory();
     }
 }

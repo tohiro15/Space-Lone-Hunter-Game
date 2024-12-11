@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private PlayerData _playerData;
+    [SerializeField] private float _stageDuration = 60f;
     [SerializeField] private PlayerVictory _playerVictoryScript;
     [SerializeField] private UIManager _uiManager;
 
@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     }
     IEnumerator TimerToVictory()
     {
-        float currentTime = _playerData.StageDuration;
+        float currentTime = _stageDuration;
         while (currentTime > 0)
         {
             int minutes = Mathf.FloorToInt(currentTime / 60);

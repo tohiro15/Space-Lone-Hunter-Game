@@ -4,17 +4,15 @@ using UnityEngine.SceneManagement;
 public class ReturnToMainMenu : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private PlayerData _playerData;
-    private PlayerDataManager _playerDM;
-    private PlayerPrefsSystem _playerPS;
+    private DataManager __dataManager;
 
     private void Start()
     {
-        _playerPS = _player.GetComponent<PlayerPrefsSystem>();
+        __dataManager = _player.GetComponent<DataManager>();
     }
     public void ClickToReturn()
     {
-        _playerDM.SavePlayerData();
+        __dataManager.SaveDataAfterDeath();
         SceneManager.LoadScene("MainMenu");
     }
 }

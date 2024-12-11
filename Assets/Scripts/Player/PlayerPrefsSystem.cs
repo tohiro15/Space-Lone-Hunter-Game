@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class PlayerPrefsSystem : MonoBehaviour
 {
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private PlayerData _playerData;
+    //[SerializeField] private UIManager _uiManager;
+    //[SerializeField] private PlayerData _playerData;
 
-    private Player _player;
+    //private Player _player;
 
 
-    private void Start()
-    {
-        _player = GetComponent<Player>();
-    }
-    public void AddWallet(int value)
-    {
-        _playerData.Collected—oinsAmount++;
+    //private void Start()
+    //{
+    //    _player = GetComponent<Player>();
+    //}
+    //public void AddWallet(int value)
+    //{
+    //    _playerData.Collected—oinsAmount++;
 
-        _playerData.WalletAmount += value;
-    }
+    //    _playerData.WalletAmount += value;
+    //}
 }

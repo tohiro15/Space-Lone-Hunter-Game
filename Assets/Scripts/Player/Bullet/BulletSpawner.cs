@@ -47,7 +47,7 @@ public class BulletSpawner : MonoBehaviour
     IEnumerator Spawner(GameObject bulletPrefab, Transform bulletSpawner)
     {
         yield return new WaitForSeconds(1);
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        GameObject bullet = BulletPool.Instance.GetFromPool(bulletSpawner.transform.position);
         _soundManager.ShootingClip();
     }
 }
