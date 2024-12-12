@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects/PlayerData", order = 1)]
@@ -9,6 +8,8 @@ public class PlayerData : ScriptableObject
     public const string RecordStageKey = "RecordStage";
 
     public const string WalletAmountKey  = "WalletAmount";
+    public const string Collected—oinsAmountKey = "Collected—oinsAmount";
+
     public const string FireRateKey = "FireRate";
 
     [Header("Stage Settings")]
@@ -20,14 +21,4 @@ public class PlayerData : ScriptableObject
     public int Collected—oinsAmount = 0;
     public int WalletAmount = 0;
     public float FireRate = 1;
-    
-    private void Awake()
-    {
-        StagePassed = PlayerPrefs.GetInt(StagePassedKey, 1);
-        RecordStage = PlayerPrefs.GetInt(RecordStageKey, 0);
-
-        WalletAmount = PlayerPrefs.GetInt(WalletAmountKey, 0);
-
-        FireRate = PlayerPrefs.GetFloat(FireRateKey, 1);
-    }
 }

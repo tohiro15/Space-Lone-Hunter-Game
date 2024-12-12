@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        if(_playerData.StagePassed%5==0) _enemyData.Health += 1;
+        _enemyData.Health = Mathf.Clamp(_playerData.StagePassed, 1, _enemyData.MaxHealth);
 
         StartCoroutine(SpawnEnemies());
     }

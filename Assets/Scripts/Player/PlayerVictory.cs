@@ -14,13 +14,6 @@ public class PlayerVictory : MonoBehaviour
 
         _uiManager.UpdateVictoryGameUI();
 
-        if (_playerData.StagePassed > _playerData.RecordStage)
-        {
-            _playerData.RecordStage = _playerData.StagePassed;
-        }
-
-        _playerData.StagePassed++;
-
         DataManager.Instance.SaveDataAfterVictory();
     }
 }

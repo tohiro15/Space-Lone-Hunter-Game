@@ -11,6 +11,14 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        _playerData.StagePassed = PlayerPrefs.GetInt(PlayerData.StagePassedKey, 1);
+        _playerData.RecordStage = PlayerPrefs.GetInt(PlayerData.RecordStageKey, 0);
+
+        _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WalletAmountKey, 0);
+        _playerData.CollectedÑoinsAmount = PlayerPrefs.GetInt(PlayerData.CollectedÑoinsAmountKey, 0);
+
+        _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FireRateKey, 1);
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -22,11 +30,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-
-    private void Start()
-    {
-        if(_playerData.StagePassed <= 1) _enemyData.Health = 1;
-    }
     public void AddWallet(int value)
     {
         _playerData.CollectedÑoinsAmount++;
@@ -36,21 +39,17 @@ public class DataManager : MonoBehaviour
 
     public void SaveDataAfterDeath()
     {
-        _playerData.CollectedÑoinsAmount = 0;
-        _enemyData.Health = 0;
 
         if (_playerData != null)
         {
             if (_playerData.StagePassed > _playerData.RecordStage)
             {
-                _playerData.RecordStage = _playerData.StagePassed - 1;
-                PlayerPrefs.SetInt(PlayerData.RecordStageKey, _playerData.RecordStage);
+                PlayerPrefs.SetInt(PlayerData.RecordStageKey, _playerData.RecordStage = _playerData.StagePassed - 1);
             }
 
-            _playerData.StagePassed = 1;
-
+            PlayerPrefs.SetInt(PlayerData.StagePassedKey, _playerData.StagePassed = 1);
             PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.StagePassedKey, 1);
+            PlayerPrefs.SetInt(PlayerData.CollectedÑoinsAmountKey, _playerData.CollectedÑoinsAmount = 0);
 
             PlayerPrefs.Save();
             Debug.Log("Äàííûå èãğîêà ñîõğàíåíû â PlayerPrefs.");
@@ -62,11 +61,17 @@ public class DataManager : MonoBehaviour
     }
     public void SaveDataAfterVictory()
     {
-        _playerData.CollectedÑoinsAmount = 0;
 
         if (_playerData != null)
         {
+            if (_playerData.StagePassed > _playerData.RecordStage)
+            {
+                _playerData.RecordStage = _playerData.StagePassed;
+            }
+
+            PlayerPrefs.SetInt(PlayerData.StagePassedKey, _playerData.StagePassed++);
             PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount);
+            PlayerPrefs.SetInt(PlayerData.CollectedÑoinsAmountKey, _playerData.CollectedÑoinsAmount = 0);
 
             PlayerPrefs.Save();
             Debug.Log("Äàííûå èãğîêà ñîõğàíåíû â PlayerPrefs.");

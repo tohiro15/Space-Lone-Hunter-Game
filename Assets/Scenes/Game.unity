@@ -4193,8 +4193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnSpeed: 1.2
   _enemyData: {fileID: 11400000, guid: 1f34f355a175c244a9891cdda8b4742c, type: 2}
-  _enemySpeed: 3
-  _maxEnemySpeed: 5.5
+  _enemySpeed: 2
+  _maxEnemySpeed: 4
   _enemyPrefab: {fileID: 2273662943122773565, guid: 589c8becdebaa6f40afd3aff8f2fea70, type: 3}
   _spawnPoints:
   - {fileID: 235156346}
@@ -4207,7 +4207,7 @@ MonoBehaviour:
   - {fileID: 2092613882}
   - {fileID: 770847492}
   - {fileID: 1612100881}
-  _uiManager: {fileID: 0}
+  _uiManager: {fileID: 769720864}
   _soundManager: {fileID: 1234461312}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
 --- !u!82 &1053421062
@@ -4930,7 +4930,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
