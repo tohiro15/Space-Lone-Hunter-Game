@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
         public int CurrentValue;
 
         public string Description;
+        public string NumberPurchase;
 
         public int Price;
         public int IncreasedPrice;
@@ -38,9 +39,11 @@ public class ShopManager : MonoBehaviour
     [Header("Scriptable Objects")]
     [SerializeField] private PlayerData _playerData;
 
-    private const string CurrentValue = "CurrentValue";
-    private const string CurrentPurchace = "CurrentPurchase";
-    private const string Price = "Price";
+    ShopItemUI shopItemUI;
+
+    private const string CURRENT_VALUE_KEY = "CurrentValue";
+    private const string CURRENT_PURCHASE_KEY = "CurrentPurchase";
+    private const string PRICE_KEY = "Price";
 
     private void Start()
     {
@@ -52,64 +55,81 @@ public class ShopManager : MonoBehaviour
     {
         foreach (ShopItem item in items)
         {
-            item.CurrentValue = PlayerPrefs.GetInt(GetUniqueKey(CurrentValue, item), item.DefaultValue);
-            item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CurrentPurchace, item), 0);
-            item.Price = PlayerPrefs.GetInt(GetUniqueKey(Price, item), item.Price);
-
             GameObject newItem = Instantiate(itemPrefab, contentPanel);
+            shopItemUI = newItem.GetComponent<ShopItemUI>();
 
-            newItem.transform.Find("ButtonImage").GetComponent<Image>().sprite = item.ButtonImage;
-            newItem.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.ItemName;
-            if (item.CurrentPurchase >= item.TotalPurchase)
-            {
-                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"MAX";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n(SPEED {item.CurrentValue})";
-            }
-            else
-            {
-                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"{item.Price.ToString()} COINS";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
-            }
+            item.CurrentValue = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.DefaultValue);
+            item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), 0);
+            item.Price = PlayerPrefs.GetInt(GetUniqueKey(PRICE_KEY, item), item.Price);
+
+            shopItemUI.ButtonImage.sprite = item.ButtonImage;
+            shopItemUI.ItemName.text = item.ItemName;
+            shopItemUI.PriceText.text = item.Price.ToString();
+            shopItemUI.Description.text = item.Description;
+            shopItemUI.NumberPurchase.text = item.NumberPurchase;
+
+            UpdateShopItemUI(newItem, item);
+
             newItem.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => BuyItem(item, newItem));
-            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
         }
     }
     public void BuyItem(ShopItem item, GameObject newItem)
     {
         if (_playerData.WalletAmount >= item.Price && item.CurrentPurchase < item.TotalPurchase)
         {
-            _playerData.WalletAmount -= item.Price;
+            ApplyPurchase(item);
             _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
 
             float newFireRate = _playerData.FireRate -= 0.1f;
 
-
-            item.CurrentValue += 10;
-            item.CurrentPurchase += 1;
-            item.Price += item.IncreasedPrice;
-
-            newItem.transform.Find("NumberPurchase").GetComponent<TextMeshProUGUI>().text = $"{item.CurrentPurchase.ToString()}/{item.TotalPurchase.ToString()}";
-            if (item.CurrentPurchase >= item.TotalPurchase)
-            {
-                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"MAX";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n(SPEED {item.CurrentValue})";
-            }
-            else
-            {
-                newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = $"{item.Price.ToString()} COINS";
-                newItem.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
-            }
+            UpdateShopItemUI(newItem, item);
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
 
             DataManager.Instance.SaveDataAfterShop();
 
-            PlayerPrefs.SetFloat(PlayerData.FireRateKey, newFireRate);
-            PlayerPrefs.SetInt(GetUniqueKey(CurrentValue, item), item.CurrentValue);
-            PlayerPrefs.SetInt(GetUniqueKey(CurrentPurchace, item), item.CurrentPurchase);
-            PlayerPrefs.SetInt(GetUniqueKey(Price, item), item.Price);
-            PlayerPrefs.Save();
+            SavePlayerPrefs(item);
         }
+    }
+    private void ApplyPurchase(ShopItem item)
+    {
+        _playerData.WalletAmount -= item.Price;
+        item.CurrentValue += 10;
+        item.CurrentPurchase += 1;
+        item.Price += item.IncreasedPrice;
+    }
+    private void UpdateWalletUI()
+    {
+        _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
+    }
+    private void UpdateShopItemUI(GameObject newItem, ShopItem item)
+    {
+        shopItemUI = newItem.GetComponent<ShopItemUI>();
+
+        shopItemUI.PriceText.text = item.Price.ToString();
+        shopItemUI.Description.text = item.Description;
+
+        shopItemUI.NumberPurchase.text = $"{item.CurrentPurchase}/{item.TotalPurchase}";
+        if (item.CurrentPurchase >= item.TotalPurchase)
+        {
+            
+            shopItemUI.PriceText.text = "MAX";
+            shopItemUI.Description.text = $"{item.Description}\n(SPEED {item.CurrentValue})";
+        }
+        else
+        {
+            shopItemUI.PriceText.text = $"{item.Price} COINS";
+            shopItemUI.Description.text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
+        }
+    }
+
+    private void SavePlayerPrefs(ShopItem item)
+    {
+        PlayerPrefs.SetFloat(PlayerData.FireRateKey, _playerData.FireRate);
+        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.CurrentValue);
+        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), item.CurrentPurchase);
+        PlayerPrefs.SetInt(GetUniqueKey(PRICE_KEY, item), item.Price);
+        PlayerPrefs.Save();
     }
     private string GetUniqueKey(string baseKey, ShopItem item)
     {
