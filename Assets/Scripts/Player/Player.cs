@@ -14,6 +14,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        _controller.Movement(_playerData._speed, gameObject);
+        _controller.Movement(_playerData.Speed, gameObject);
     }
 }

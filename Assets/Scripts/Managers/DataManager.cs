@@ -11,13 +11,16 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        _playerData.StagePassed = PlayerPrefs.GetInt(PlayerData.StagePassedKey, 1);
-        _playerData.RecordStage = PlayerPrefs.GetInt(PlayerData.RecordStageKey, 0);
+        _playerData.StagePassed = PlayerPrefs.GetInt(PlayerData.STAGE_PASSED_KEY, 1);
+        _playerData.RecordStage = PlayerPrefs.GetInt(PlayerData.RECORD_STAGE_KEY, 0);
 
-        _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WalletAmountKey, 0);
-        _playerData.CollectedÑoinsAmount = PlayerPrefs.GetInt(PlayerData.CollectedÑoinsAmountKey, 0);
+        _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WALLET_AMOUNT_KEY, 0);
+        _playerData.CollectedÑoinsAmount = PlayerPrefs.GetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, 0);
 
-        _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FireRateKey, 1);
+        _playerData.BulletCount = PlayerPrefs.GetInt(PlayerData.BULLET_COUNT_KEY, 1);
+
+        _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FIRE_RATE_KEY, 1);
+        _playerData.FireDamage = PlayerPrefs.GetInt(PlayerData.FIRE_DAMAGE_KEY, 1);
 
         if (Instance != null)
         {
@@ -34,7 +37,7 @@ public class DataManager : MonoBehaviour
     {
         _playerData.CollectedÑoinsAmount++;
 
-        PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount += value);
+        PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount += value);
     }
 
     public void SaveDataAfterDeath()
@@ -44,12 +47,12 @@ public class DataManager : MonoBehaviour
         {
             if (_playerData.StagePassed > _playerData.RecordStage)
             {
-                PlayerPrefs.SetInt(PlayerData.RecordStageKey, _playerData.RecordStage = _playerData.StagePassed - 1);
+                PlayerPrefs.SetInt(PlayerData.RECORD_STAGE_KEY, _playerData.RecordStage = _playerData.StagePassed - 1);
             }
 
-            PlayerPrefs.SetInt(PlayerData.StagePassedKey, _playerData.StagePassed = 1);
-            PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.CollectedÑoinsAmountKey, _playerData.CollectedÑoinsAmount = 0);
+            PlayerPrefs.SetInt(PlayerData.STAGE_PASSED_KEY, _playerData.StagePassed = 1);
+            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+            PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedÑoinsAmount = 0);
 
             PlayerPrefs.Save();
             Debug.Log("Äàííûå èãğîêà ñîõğàíåíû â PlayerPrefs.");
@@ -69,9 +72,9 @@ public class DataManager : MonoBehaviour
                 _playerData.RecordStage = _playerData.StagePassed;
             }
 
-            PlayerPrefs.SetInt(PlayerData.StagePassedKey, _playerData.StagePassed += 1);
-            PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.CollectedÑoinsAmountKey, _playerData.CollectedÑoinsAmount = 0);
+            PlayerPrefs.SetInt(PlayerData.STAGE_PASSED_KEY, _playerData.StagePassed += 1);
+            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+            PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedÑoinsAmount = 0);
 
             PlayerPrefs.Save();
             Debug.Log("Äàííûå èãğîêà ñîõğàíåíû â PlayerPrefs.");
@@ -86,8 +89,13 @@ public class DataManager : MonoBehaviour
     {
         if (_playerData != null)
         {
-            PlayerPrefs.SetInt(PlayerData.WalletAmountKey, _playerData.WalletAmount);
-            PlayerPrefs.SetFloat(PlayerData.FireRateKey, _playerData.FireRate);
+            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+
+            PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount);
+
+            PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
+            PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate);
+
 
             PlayerPrefs.Save();
             Debug.Log("Äàííûå èãğîêà ñîõğàíåíû â PlayerPrefs.");

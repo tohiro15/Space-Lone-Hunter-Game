@@ -59,7 +59,8 @@ public class ShopManager : MonoBehaviour
             shopItemUI = newItem.GetComponent<ShopItemUI>();
 
             item.CurrentValue = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.DefaultValue);
-            item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), 0);
+            if (item.ItemName != "BULLET COUNT") item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), 0);
+            else item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), 1);
             item.Price = PlayerPrefs.GetInt(GetUniqueKey(PRICE_KEY, item), item.Price);
 
             shopItemUI.ButtonImage.sprite = item.ButtonImage;
@@ -79,9 +80,18 @@ public class ShopManager : MonoBehaviour
         {
             ApplyPurchase(item);
             _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
-
-            float newFireRate = _playerData.FireRate -= 0.1f;
-
+            switch (item.ItemName)
+            {
+                case "FIRE SPEED":
+                    PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate -= 0.1f);
+                    break;
+                case "FIRE DAMAGE":
+                    PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage += 1);
+                    break;
+                case "BULLET COUNT":
+                    PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount += 1);
+                    break;
+            }
             UpdateShopItemUI(newItem, item);
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
@@ -114,18 +124,39 @@ public class ShopManager : MonoBehaviour
         {
             
             shopItemUI.PriceText.text = "MAX";
-            shopItemUI.Description.text = $"{item.Description}\n(SPEED {item.CurrentValue})";
+            switch (item.ItemName)
+            {
+                case "FIRE SPEED":
+                    shopItemUI.Description.text = $"{item.Description}\n(SPEED {item.CurrentValue})";
+                    break;
+                case "FIRE DAMAGE":
+                    shopItemUI.Description.text = $"{item.Description}\n(DAMAGE {item.CurrentValue})";
+                    break;
+                case "BULLET COUNT":
+                    shopItemUI.Description.text = $"{item.Description}\n(BULLET {item.CurrentValue})";
+                    break;
+            }
         }
         else
         {
             shopItemUI.PriceText.text = $"{item.Price} COINS";
-            shopItemUI.Description.text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
+            switch (item.ItemName)
+            {
+                case "FIRE SPEED":
+                    shopItemUI.Description.text = $"{item.Description}\n({item.CurrentValue} SPEED +10)";
+                    break;
+                case "FIRE DAMAGE":
+                    shopItemUI.Description.text = $"{item.Description}\n({item.CurrentValue} DAMAGE +1)";
+                    break;
+                case "BULLET COUNT":
+                    shopItemUI.Description.text = $"{item.Description}\n(BULLET +1)";
+                    break;
+            }
         }
     }
 
     private void SavePlayerPrefs(ShopItem item)
     {
-        PlayerPrefs.SetFloat(PlayerData.FireRateKey, _playerData.FireRate);
         PlayerPrefs.SetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.CurrentValue);
         PlayerPrefs.SetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), item.CurrentPurchase);
         PlayerPrefs.SetInt(GetUniqueKey(PRICE_KEY, item), item.Price);

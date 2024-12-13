@@ -16,16 +16,12 @@ public class InteractionToShopMenu : MonoBehaviour
         DataManager.Instance.SaveDataAfterDeath();
         _loadingCanvas.SetActive(true);
 
-        PlayerPrefs.Save();
-
         StartCoroutine(AsyncLoadingScene("Shop"));
     }
 
     public void ClosedShopMenu(string sceneName)
     {
         _loadingCanvas.SetActive(true);
-
-        PlayerPrefs.Save();
 
         StartCoroutine(AsyncLoadingScene(sceneName));
     }

@@ -4,21 +4,28 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("PlayerPrefsKey")]
-    public const string StagePassedKey = "StagePassed";
-    public const string RecordStageKey = "RecordStage";
+    public const string STAGE_PASSED_KEY = "StagePassed";
+    public const string RECORD_STAGE_KEY = "RecordStage";
 
-    public const string WalletAmountKey  = "WalletAmount";
-    public const string Collected—oinsAmountKey = "Collected—oinsAmount";
+    public const string WALLET_AMOUNT_KEY  = "WalletAmount";
+    public const string COLLECTED_COINS_AMOUNT_KEY = "Collected—oinsAmount";
 
-    public const string FireRateKey = "FireRate";
+    public const string BULLET_COUNT_KEY = "BulletCountKey";
+
+    public const string FIRE_RATE_KEY = "FireRate";
+    public const string FIRE_DAMAGE_KEY= "FireDamage";
 
     [Header("Stage Settings")]
     public int StagePassed = 1;
     public int RecordStage = 0;
 
     [Header("Player Statistic")]
-    public float _speed = 6f;
     public int Collected—oinsAmount = 0;
     public int WalletAmount = 0;
+    public float Speed = 6f;
+
+    public int BulletCount = 1;
+
+    public int FireDamage = 1;
     public float FireRate = 1;
 }

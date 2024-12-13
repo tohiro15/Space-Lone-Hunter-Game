@@ -6,7 +6,9 @@ public class BulletSpawner : MonoBehaviour
 {
     [Header("Bullet Settings")]
     [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] private Transform[] _bulletSpawners;
+    [SerializeField] private Transform _defaultSpawn;
+    [SerializeField] private Transform[] _bulletModifiedSpawns;
+
     [SerializeField] private float nextFireTime = 0f;
 
     [Header("Player Data | Scriptable Object")]
@@ -29,17 +31,23 @@ public class BulletSpawner : MonoBehaviour
     public void Spawn(GameObject bulletPrefab, Transform[] bulletSpawners)
     {
         Bullet bulletScript = bulletPrefab.GetComponent<Bullet>();
-
-        foreach (Transform bulletSpawner in bulletSpawners)
+        if (_playerData.BulletCount >= 2)
         {
-            StartCoroutine(Spawner(bulletPrefab, bulletSpawner));
+            foreach (Transform bulletSpawner in bulletSpawners)
+            {
+                StartCoroutine(Spawner(bulletPrefab, bulletSpawner));
+            }
+        }
+        else
+        {
+            StartCoroutine(Spawner(bulletPrefab, _defaultSpawn));
         }
     }
     private void UpdateNextFireTime()
     {
         if (Time.time >= nextFireTime)
         {
-            Spawn(_bulletPrefab, _bulletSpawners);
+            Spawn(_bulletPrefab, _bulletModifiedSpawns);
             nextFireTime = Time.time + _playerData.FireRate;
         }
     }

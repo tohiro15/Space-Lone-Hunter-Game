@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             enemyScript.OnEnemyDestroyed += OnEnemyDestroyed;
 
             float clampedSpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
-            enemyScript.Initialize(_soundManager, _enemyData.Health, clampedSpeed);
+            enemyScript.Initialize(_soundManager, _enemyData.Health, _playerData.FireDamage, clampedSpeed);
         }
     }
 
