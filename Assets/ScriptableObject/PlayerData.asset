@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StagePassed: 1
   RecordStage: 0
-  "Collected\u0421oinsAmount": 0
-  WalletAmount: 1
+  "Collected\u0421oinsAmount": 4
+  WalletAmount: 121766
   Speed: 6
   BulletCount: 2
-  FireDamage: 1
-  FireRate: 1
+  FireDamage: 2
+  FireRate: 0.6999999

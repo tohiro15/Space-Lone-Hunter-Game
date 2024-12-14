@@ -78,20 +78,23 @@ public class ShopManager : MonoBehaviour
     {
         if (_playerData.WalletAmount >= item.Price && item.CurrentPurchase < item.TotalPurchase)
         {
-            ApplyPurchase(item);
-            _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
             switch (item.ItemName)
             {
                 case "FIRE SPEED":
                     PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate -= 0.1f);
+                    ApplyPurchase(item, 10);
                     break;
                 case "FIRE DAMAGE":
                     PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage += 1);
+                    ApplyPurchase(item, 1);
                     break;
                 case "BULLET COUNT":
                     PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount += 1);
+                    ApplyPurchase(item, 1);
                     break;
             }
+
+            _walletUGUI.text = $"WALLET: {_playerData.WalletAmount}";
             UpdateShopItemUI(newItem, item);
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
@@ -101,10 +104,10 @@ public class ShopManager : MonoBehaviour
             SavePlayerPrefs(item);
         }
     }
-    private void ApplyPurchase(ShopItem item)
+    private void ApplyPurchase(ShopItem item, int value)
     {
         _playerData.WalletAmount -= item.Price;
-        item.CurrentValue += 10;
+        item.CurrentValue += value;
         item.CurrentPurchase += 1;
         item.Price += item.IncreasedPrice;
     }
