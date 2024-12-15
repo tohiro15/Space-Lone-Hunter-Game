@@ -44,9 +44,10 @@ public class PauseGame : MonoBehaviour
         while (seconds > 0)
         {
             _timer.text = $"{seconds}";
+            yield return new WaitForSecondsRealtime(1);
             seconds--;
-            yield return null;
         }
+
         Time.timeScale = 1;
 
         _timerUI.SetActive(false);

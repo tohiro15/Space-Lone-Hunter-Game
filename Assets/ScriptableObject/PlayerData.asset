@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   StagePassed: 1
-  RecordStage: 0
-  "Collected\u0421oinsAmount": 4
-  WalletAmount: 121766
+  RecordStage: 1
+  "Collected\u0421oinsAmount": 0
+  WalletAmount: 12409712
   Speed: 6
   BulletCount: 2
-  FireDamage: 2
-  FireRate: 0.6999999
+  FireDamage: 5
+  FireRate: 0.5999999
