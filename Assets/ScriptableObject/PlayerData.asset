@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8541ceb441b74240934469dcb2b3c56, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  StagePassed: 1
-  RecordStage: 1
   "Collected\u0421oinsAmount": 0
-  WalletAmount: 12409712
+  WalletAmount: 1343473
   Speed: 6
-  BulletCount: 2
-  FireDamage: 5
+  BulletCount: 1
+  FireDamage: 1
   FireRate: 0.5999999

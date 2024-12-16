@@ -1,61 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : MonoBehaviour
-{
-    [Header("Bullet Settings")]
-    [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] private Transform _defaultSpawn;
-    [SerializeField] private Transform[] _bulletModifiedSpawns;
-
-    [SerializeField] private float nextFireTime = 0f;
-
-    [Header("Player Data | Scriptable Object")]
-    [SerializeField] private PlayerData _playerData;
-
-    [Header("Sound settings")]
-    [SerializeField] private SoundManager _soundManager;
-
-    private PlayerPrefsSystem _playerPS;
-
-    private void Start()
+    public class BulletSpawner : MonoBehaviour
     {
-        _playerPS = GetComponentInParent<PlayerPrefsSystem>();
-    }
+        [Header("Bullet Settings")]
+        [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private Transform _defaultSpawn;
+        [SerializeField] private Transform[] _bulletModifiedSpawns;
 
-    private void Update()
-    {
-        UpdateNextFireTime();
-    }
-    public void Spawn(GameObject bulletPrefab, Transform[] bulletSpawners)
-    {
-        Bullet bulletScript = bulletPrefab.GetComponent<Bullet>();
-        if (_playerData.BulletCount >= 2)
+        [Header("Player Data | Scriptable Object")]
+        [SerializeField] private PlayerData _playerData;
+
+        [Header("Sound Settings")]
+        [SerializeField] private SoundManager _soundManager;
+
+        private float _nextFireTime = 0f;
+
+        private void Update()
         {
-            foreach (Transform bulletSpawner in bulletSpawners)
+            _nextFireTime -= Time.deltaTime;
+
+            if (_nextFireTime <= 0)
             {
-                StartCoroutine(Spawner(bulletPrefab, bulletSpawner));
+                Spawn();
+                _nextFireTime = _playerData.FireRate;
             }
         }
-        else
-        {
-            StartCoroutine(Spawner(bulletPrefab, _defaultSpawn));
-        }
-    }
-    private void UpdateNextFireTime()
-    {
-        if (Time.time >= nextFireTime)
-        {
-            Spawn(_bulletPrefab, _bulletModifiedSpawns);
-            nextFireTime = Time.time + _playerData.FireRate;
-        }
-    }
 
-    IEnumerator Spawner(GameObject bulletPrefab, Transform bulletSpawner)
-    {
-        yield return new WaitForSeconds(1);
-        GameObject bullet = BulletPool.Instance.GetFromPool(bulletSpawner.transform.position);
-        _soundManager.ShootingClip();
+        private void Spawn()
+        {
+            if (_playerData.BulletCount >= 2)
+            {
+                foreach (Transform bulletSpawner in _bulletModifiedSpawns)
+                {
+                    SpawnBullet(bulletSpawner);
+                }
+            }
+            else
+            {
+                SpawnBullet(_defaultSpawn);
+            }
+        }
+
+        private void SpawnBullet(Transform bulletSpawner)
+        {
+            GameObject bullet = BulletPool.Instance.GetFromPool(bulletSpawner.position);
+            _soundManager.ShootingClip();
+        }
     }
-}

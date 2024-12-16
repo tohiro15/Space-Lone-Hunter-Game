@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         HUD.SetActive(true);
 
-        _stageCount.text = $"гнмю нунрш - {_gameData.StagePassed.ToString()} ";
+        _stageCount.text = $"{_gameData.StagePassed.ToString()} гнмю нунрш";
     }
 
     public void UpdateVictoryGameUI()

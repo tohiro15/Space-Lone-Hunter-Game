@@ -1000,6 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
   _enemyData: {fileID: 11400000, guid: 1f34f355a175c244a9891cdda8b4742c, type: 2}
+  _gameData: {fileID: 11400000, guid: 914ed2123e91c9947a2462dec0f22a91, type: 2}
 --- !u!4 &288429492
 Transform:
   m_ObjectHideFlags: 0
@@ -3217,6 +3218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8c12122c89a0a40bff8c4a131c87b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: 914ed2123e91c9947a2462dec0f22a91, type: 2}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
   VictoryUI: {fileID: 1703094725}
   GameOverUI: {fileID: 1330448654}
@@ -4272,7 +4274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnSpeed: 2
-  _enemyData: {fileID: 11400000, guid: 1f34f355a175c244a9891cdda8b4742c, type: 2}
   _enemySpeed: 2
   _maxEnemySpeed: 4
   _enemyPrefab: {fileID: 2273662943122773565, guid: 589c8becdebaa6f40afd3aff8f2fea70, type: 3}
@@ -4289,7 +4290,9 @@ MonoBehaviour:
   - {fileID: 1612100881}
   _uiManager: {fileID: 769720864}
   _soundManager: {fileID: 1234461312}
+  _enemyData: {fileID: 11400000, guid: 1f34f355a175c244a9891cdda8b4742c, type: 2}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
+  _gameData: {fileID: 11400000, guid: 914ed2123e91c9947a2462dec0f22a91, type: 2}
 --- !u!82 &1053421062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7205,7 +7208,6 @@ MonoBehaviour:
   _bulletModifiedSpawns:
   - {fileID: 1186018575}
   - {fileID: 661310533}
-  nextFireTime: 0
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
   _soundManager: {fileID: 1234461312}
 --- !u!1 &1964689300
@@ -7447,8 +7449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1991688281}
   - component: {fileID: 1991688282}
-  - component: {fileID: 1991688285}
-  - component: {fileID: 1991688284}
   - component: {fileID: 1991688283}
   - component: {fileID: 1991688287}
   - component: {fileID: 1991688289}
@@ -7586,30 +7586,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1991688284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991688279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31be6eadecbb01c4db896459ecbbd135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1991688285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991688279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8c2cd5ee20915498046100a2c72b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1991688287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7624,7 +7600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundManager: {fileID: 1234461312}
   _uiManager: {fileID: 769720864}
-  _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
+  _gameData: {fileID: 11400000, guid: 914ed2123e91c9947a2462dec0f22a91, type: 2}
 --- !u!114 &1991688289
 MonoBehaviour:
   m_ObjectHideFlags: 0
