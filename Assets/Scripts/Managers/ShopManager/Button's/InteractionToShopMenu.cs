@@ -13,7 +13,7 @@ public class InteractionToShopMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _loadingText;
     public void OpenShopMenu()
     {
-        DataManager.Instance.SaveDataAfterDeath();
+        DataManager.Instance.SaveDataAfterVictory();
         _loadingCanvas.SetActive(true);
 
         StartCoroutine(AsyncLoadingScene("Shop"));
