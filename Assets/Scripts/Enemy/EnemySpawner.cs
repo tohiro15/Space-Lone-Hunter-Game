@@ -7,7 +7,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _spawnSpeed = 2f;
 
     [Header("Enemy Settings")]
-    [SerializeField] private EnemyData _enemyData;
     [SerializeField] private float _enemySpeed;
     [SerializeField] private float _maxEnemySpeed;
     [SerializeField] private GameObject _enemyPrefab;
@@ -16,13 +15,15 @@ public class EnemySpawner : MonoBehaviour
     [Header("Content")]
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private EnemyData _enemyData;
     [SerializeField] private PlayerData _playerData;
+    [SerializeField] private GameData _gameData;
 
     private bool _canSpawn = true;
 
     private void Start()
     {
-        _enemyData.Health = Mathf.Clamp(_playerData.StagePassed, 1, _enemyData.MaxHealth);
+        _enemyData.Health = Mathf.Clamp(_gameData.StagePassed, 1, _enemyData.MaxHealth);
 
         StartCoroutine(SpawnEnemies());
     }

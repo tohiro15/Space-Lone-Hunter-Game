@@ -4,9 +4,6 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("PlayerPrefsKey")]
-    public const string STAGE_PASSED_KEY = "StagePassed";
-    public const string RECORD_STAGE_KEY = "RecordStage";
-
     public const string WALLET_AMOUNT_KEY  = "WalletAmount";
     public const string COLLECTED_COINS_AMOUNT_KEY = "Collected—oinsAmount";
 
@@ -14,10 +11,6 @@ public class PlayerData : ScriptableObject
 
     public const string FIRE_RATE_KEY = "FireRate";
     public const string FIRE_DAMAGE_KEY= "FireDamage";
-
-    [Header("Stage Settings")]
-    public int StagePassed = 1;
-    public int RecordStage = 0;
 
     [Header("Player Statistic")]
     public int Collected—oinsAmount = 0;

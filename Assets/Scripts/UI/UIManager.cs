@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+
+    [SerializeField] private GameData _gameData;
     [SerializeField] private PlayerData _playerData;
 
     [Header("GameObjects UI")]
@@ -32,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         HUD.SetActive(true);
 
-        _stageCount.text = $"гнмю нунрш - {_playerData.StagePassed.ToString()} ";
+        _stageCount.text = $"гнмю нунрш - {_gameData.StagePassed.ToString()} ";
     }
 
     public void UpdateVictoryGameUI()
@@ -41,8 +43,8 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _currentStageUI.text = $"опнидемн гнм: {_playerData.StagePassed}";
-        _recordStageAfterVictoryUI.text = $"пейнпд опнидеммшу гнм: {_playerData.RecordStage}";
+        _currentStageUI.text = $"опнидемн гнм: {_gameData.StagePassed}";
+        _recordStageAfterVictoryUI.text = $"пейнпд опнидеммшу гнм: {_gameData.RecordStage}";
         _walletAmountAfterVictoryUI.text = $"йньекей: {_playerData.WalletAmount} лнмер";
         _coinsEarnedAfterVictoryUI.text = $"гюпюанрюмн: {_playerData.CollectedяoinsAmount}";
     }
@@ -52,7 +54,7 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _recordStageAfterDeathUI.text = $"пейнпд опнидеммшу гнм: {_playerData.RecordStage}";
+        _recordStageAfterDeathUI.text = $"пейнпд опнидеммшу гнм: {_gameData.RecordStage}";
         _walletAmountAfterDeathUI.text = $"йньекей: {_playerData.WalletAmount} лнмер";
         _coinsEarnedAfterDeathUI.text = $"гюпюанрюмн: {_playerData.CollectedяoinsAmount}";
     }

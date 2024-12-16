@@ -8,11 +8,12 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private EnemyData _enemyData;
+    [SerializeField] private GameData _gameData;
 
     private void Awake()
     {
-        _playerData.StagePassed = PlayerPrefs.GetInt(PlayerData.STAGE_PASSED_KEY, 1);
-        _playerData.RecordStage = PlayerPrefs.GetInt(PlayerData.RECORD_STAGE_KEY, 0);
+        _gameData.StagePassed = PlayerPrefs.GetInt(GameData.STAGE_PASSED_KEY, 1);
+        _gameData.RecordStage = PlayerPrefs.GetInt(GameData.RECORD_STAGE_KEY, 0);
 
         _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WALLET_AMOUNT_KEY, 0);
         _playerData.Collected—oinsAmount = PlayerPrefs.GetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, 0);
@@ -45,12 +46,12 @@ public class DataManager : MonoBehaviour
 
         if (_playerData != null)
         {
-            if (_playerData.StagePassed > _playerData.RecordStage)
+            if (_gameData.StagePassed > _gameData.RecordStage)
             {
-                PlayerPrefs.SetInt(PlayerData.RECORD_STAGE_KEY, _playerData.RecordStage = _playerData.StagePassed - 1);
+                PlayerPrefs.SetInt(GameData.RECORD_STAGE_KEY, _gameData.RecordStage = _gameData.StagePassed - 1);
             }
 
-            PlayerPrefs.SetInt(PlayerData.STAGE_PASSED_KEY, _playerData.StagePassed = 1);
+            PlayerPrefs.SetInt(GameData.STAGE_PASSED_KEY, _gameData.StagePassed = 1);
             PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
             PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.Collected—oinsAmount = 0);
 
@@ -67,12 +68,12 @@ public class DataManager : MonoBehaviour
 
         if (_playerData != null)
         {
-            if (_playerData.StagePassed > _playerData.RecordStage)
+            if (_gameData.StagePassed > _gameData.RecordStage)
             {
-                _playerData.RecordStage = _playerData.StagePassed;
+                _gameData.RecordStage = _gameData.StagePassed;
             }
 
-            PlayerPrefs.SetInt(PlayerData.STAGE_PASSED_KEY, _playerData.StagePassed += 1);
+            PlayerPrefs.SetInt(GameData.STAGE_PASSED_KEY, _gameData.StagePassed += 1);
             PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
             PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.Collected—oinsAmount = 0);
 
