@@ -12,15 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce13bf4da3f979e40bcbb04de24b3362, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  LevelsName:
-  - Green
-  - Yellow
-  - Red
-  LevelsColor:
-  - {r: 0.014574393, g: 0.6415094, b: 0, a: 0.5882353}
-  - {r: 0.764151, g: 0.7564745, b: 0, a: 0.5882353}
-  - {r: 0.7735849, g: 0, b: 0, a: 0.5882353}
-  CurrentLevel: 1
-  CurrentStage: 1
-  TotalStage: 5
+  StagePassed: 1
   RecordStage: 0
