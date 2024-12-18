@@ -4,12 +4,10 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     [Header("PlayerPrefsKey")]
-    public const string LEVEL_CURRENT_KEY = "CurrentLevel";
-
-    public const string STAGE_CURRENT_KEY = "CurrentStage";
-    public const string STAGE_TOTAL_KEY = "TotalStage";
+    public const string STAGE_PASSED_KEY = "StagePassed";
     public const string RECORD_STAGE_KEY = "RecordStage";
 
+<<<<<<< HEAD
     [Header("Settings")]
     public string[] LevelsName;
     public Color[] LevelsColor;
@@ -18,5 +16,11 @@ public class GameData : ScriptableObject
     public int CurrentLevel = 0;
     public int CurrentStage = 1;
     public int TotalStage = 5;
+=======
+    [Header("Stage Settings")]
+    public string StageName;
+
+    public int StagePassed = 1;
+>>>>>>> parent of bcfcc04 (feat: Система зон с динамическим увеличением этапов)
     public int RecordStage = 0;
 }
