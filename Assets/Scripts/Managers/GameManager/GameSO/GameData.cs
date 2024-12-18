@@ -10,13 +10,13 @@ public class GameData : ScriptableObject
     public const string STAGE_TOTAL_KEY = "TotalStage";
     public const string RECORD_STAGE_KEY = "RecordStage";
 
-    [Header("Stage Settings")]
+    [Header("Settings")]
     public string[] LevelsName;
     public Color[] LevelsColor;
-    public int CurrentLevel = 0;
 
+    [Header("Statistics")]
+    public int CurrentLevel = 0;
     public int CurrentStage = 1;
     public int TotalStage = 5;
-
     public int RecordStage = 0;
 }
