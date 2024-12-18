@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class PlayerDeath : MonoBehaviour
+public class PlayResult : MonoBehaviour
 {
-    [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
-    private void Start()
-    {
-    }
+    [SerializeField] private UIManager _uiManager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
@@ -19,5 +16,12 @@ public class PlayerDeath : MonoBehaviour
 
             DataManager.Instance.SaveDataAfterDeath();
         }
+    }
+    public void Victory()
+    {
+        Time.timeScale = 0;
+        DataManager.Instance.SaveDataAfterVictory();
+        _soundManager.VictoryClip();
+        _uiManager.UpdateVictoryGameUI();
     }
 }

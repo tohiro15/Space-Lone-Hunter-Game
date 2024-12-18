@@ -19,14 +19,12 @@ public class PauseGame : MonoBehaviour
     {
         _pauseMenuUI.SetActive(false);
         _HUD.SetActive(true);
-
         _timer = _timerUI.GetComponentInChildren<TextMeshProUGUI>();
     }
-    public void Pausing()
+    public void Pause()
     {
         Time.timeScale = 0;
         _HUD.SetActive(false);
-
         _pauseMenuUI.SetActive(true);
     }
 
@@ -34,7 +32,6 @@ public class PauseGame : MonoBehaviour
     {
         _pauseMenuUI.SetActive(false);
         _timerUI.SetActive(true);
-
         StartCoroutine(TimerToReturn());
     }
 

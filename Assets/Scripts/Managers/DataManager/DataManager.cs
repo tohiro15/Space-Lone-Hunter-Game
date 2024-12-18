@@ -73,6 +73,7 @@ public class DataManager : MonoBehaviour
                 _gameData.RecordStage = _gameData.StagePassed;
             }
 
+            PlayerPrefs.SetInt(GameData.STAGE_PASSED_KEY, _gameData.StagePassed += 1);
             PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
             PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.Collected—oinsAmount = 0);
 

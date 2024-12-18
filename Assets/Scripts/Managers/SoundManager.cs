@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource _baseSource;
+    [SerializeField] private AudioSource _baseSource;
     [SerializeField] private AudioSource _playerSource;
     [SerializeField] private AudioSource _enemySource;
 
@@ -17,42 +15,61 @@ public class SoundManager : MonoBehaviour
     [Header("Enemy Sounds Effects")]
     [SerializeField] private AudioClip _destroyEnemy;
 
-    private int _currentClipIndex = 0;
+    private int _currentClipIndex;
 
     void Start()
     {
-        _baseSource = GetComponent<AudioSource>();
-        if (_music.Length > 0)
+        if (_music == null || _music.Length == 0)
         {
-            PlayClip(_currentClipIndex);
+            Debug.LogWarning("Нет музыкальных треков для воспроизведения.");
+            return;
         }
+
+        PlayClip(_currentClipIndex);
     }
     public void PlayClip(int index)
     {
-        if (index >= 0 && index < _music.Length)
+        if (_music == null || _music.Length == 0)
+        {
+            Debug.LogWarning("Массив аудиотреков пуст!");
+            return;
+        }
+
+        index = Mathf.Clamp(index, 0, _music.Length - 1);
+        if (_baseSource.clip != _music[index])
         {
             _baseSource.clip = _music[index];
             _baseSource.Play();
             _currentClipIndex = index;
         }
-        else
-        {
-            Debug.LogWarning("Индекс аудиоклипа вне массива!");
-        }
     }
+    private void PlaySound(AudioSource source, AudioClip clip, bool stopCurrent = false)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("Попытка воспроизвести пустой аудиоклип!");
+            return;
+        }
+
+        if (stopCurrent)
+            source.Stop();
+
+        source.PlayOneShot(clip);
+    }
+
     public void ShootingClip()
     {
-        _playerSource.PlayOneShot(_shooting);
+        PlaySound(_playerSource, _shooting);
     }
 
     public void DestroyEnemyClip()
     {
-        _enemySource.PlayOneShot(_destroyEnemy);
+        PlaySound(_enemySource, _destroyEnemy);
     }
+
     public void VictoryClip()
     {
-        _baseSource.Stop();
-        _baseSource.PlayOneShot(_victorySound);
+        PlaySound(_baseSource, _victorySound, true);
     }
     public void StopClip()
     {

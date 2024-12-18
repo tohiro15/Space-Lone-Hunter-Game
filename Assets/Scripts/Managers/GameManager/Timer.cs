@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float _stageDuration = 60f;
-    [SerializeField] private PlayerVictory _playerVictoryScript;
+    [SerializeField] private PlayResult _victoryScript;
     [SerializeField] private UIManager _uiManager;
 
     void Start()
@@ -25,6 +25,6 @@ public class Timer : MonoBehaviour
             currentTime -= Time.deltaTime;
             yield return null;
         }
-        _playerVictoryScript.Victory();
+        _victoryScript.Victory();
     }
 }
