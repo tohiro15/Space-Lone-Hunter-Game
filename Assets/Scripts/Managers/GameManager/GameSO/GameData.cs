@@ -19,6 +19,7 @@ public class GameData : ScriptableObject
     [Header("Stage Settings")]
     public string StageName;
 
+    [Header("Stage Settings")]
     public int StagePassed = 1;
     public int RecordStage = 0;
 }
