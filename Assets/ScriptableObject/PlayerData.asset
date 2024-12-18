@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   "Collected\u0421oinsAmount": 0
-  WalletAmount: 1343473
+  WalletAmount: 121712
   Speed: 6
-  BulletCount: 1
-  FireDamage: 1
+  BulletCount: 2
+  FireDamage: 5
   FireRate: 0.5999999

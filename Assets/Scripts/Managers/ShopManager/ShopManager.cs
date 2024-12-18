@@ -51,8 +51,7 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        _walletUGUI.text = $"йньекей: {_playerData.WalletAmount} лнмер";
-
+        UpdateWalletUI();
         PopulateShop();
     }
     public void PopulateShop()
@@ -97,7 +96,7 @@ public class ShopManager : MonoBehaviour
                 ApplyPurchase(item, 1);
             }
 
-            _walletUGUI.text = $"йньекей: {_playerData.WalletAmount} лнмер";
+            UpdateWalletUI();
             UpdateShopItemUI(newItem, item);
 
             _baseAudioSource.PlayOneShot(_buySoundClip);
@@ -116,7 +115,7 @@ public class ShopManager : MonoBehaviour
     }
     private void UpdateWalletUI()
     {
-        _walletUGUI.text = $"йньекей: {_playerData.WalletAmount} лнмер";
+        _walletUGUI.text = $"{_playerData.WalletAmount}";
     }
     private void UpdateShopItemUI(GameObject newItem, ShopItem item)
     {
@@ -136,7 +135,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            shopItemUI.PriceText.text = $"{item.Price}\nлнмер";
+            shopItemUI.PriceText.text = $"{item.Price}\nукюлю";
             if (item.isFireSpeed) shopItemUI.Description.text = $"{item.Description}";
             else if (item.isFireDamage) shopItemUI.Description.text = $"{item.Description}";
             else if (item.isBulletCount) shopItemUI.Description.text = item.Description;
