@@ -20,8 +20,8 @@ public class PlayResult : MonoBehaviour
     public void Victory()
     {
         Time.timeScale = 0;
-        DataManager.Instance.SaveDataAfterVictory();
         _soundManager.VictoryClip();
         _uiManager.UpdateVictoryGameUI();
+        DataManager.Instance.SaveDataAfterVictory();
     }
 }
