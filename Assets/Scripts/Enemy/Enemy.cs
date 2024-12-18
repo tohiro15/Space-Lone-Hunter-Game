@@ -4,11 +4,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private SoundManager _soundManager;
+
     private int _health;
     private int _damage;
     private float _speed;
 
     private TextMeshProUGUI _healthText;
+
+    private Transform _cachedTransform;
 
     private bool _hit;
     private bool _isActive;
@@ -25,53 +28,53 @@ public class Enemy : MonoBehaviour
 
         _soundManager = soundManager;
 
+        _cachedTransform = transform; // Кэшируем трансформ один раз
 
         _health = health;
         _damage = damage;
         _speed = speed;
     }
-
     private void Update()
     {
         if (!_isActive) return;
 
-        if (transform.position.y < -5f) ReturnEnemyToPool();
+        if (_cachedTransform.position.y < -5f)
+        {
+            ReturnEnemyToPool();
+            return;
+        }
 
-        Vector2 newPosition = gameObject.transform.position;
-
-        newPosition.y -= _speed * Time.deltaTime;
-
-        gameObject.transform.position = newPosition;
+        _cachedTransform.position += Vector3.down * _speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D bullet)
     {
+        if (!_isActive || !bullet.CompareTag("Bullet")) return;
 
         BulletPool.Instance.ReturnToPool(bullet.gameObject);
-
-        if (!_isActive) return;
-        if (bullet.CompareTag("Bullet"))
+        if (!_hit)
         {
-            if (!_hit)
-            {
-                _hit = true;
-                DataManager.Instance.AddWallet(1);
-            }
-
-            TakeDamage(_damage);
-            _soundManager.DestroyEnemyClip();
+            _hit = true;
+            DataManager.Instance.AddWallet(1);
         }
+
+        TakeDamage(_damage);
+        _soundManager.DestroyEnemyClip();
     }
 
     public void TakeDamage(int damage)
     {
-        if (!_isActive) return;
+        if (!_isActive || _health <= 0) return;
 
         _health -= damage;
-        _healthText.text = _health.ToString();
 
-        if (_health <= 0)
+        if (_health > 0)
         {
+            _healthText.text = _health.ToString();
+        }
+        else
+        {
+            _healthText.text = "0";
             OnEnemyDestroyed?.Invoke(this);
             ReturnEnemyToPool();
         }
@@ -82,6 +85,7 @@ public class Enemy : MonoBehaviour
         if (!_isActive) return;
 
         _isActive = false;
+        _hit = false;
         EnemyPool.Instance.ReturnToPool(gameObject);
     }
 }

@@ -5431,7 +5431,7 @@ GameObject:
   - component: {fileID: 1374681556}
   - component: {fileID: 1374681555}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: FPSCounter (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6912,7 +6912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a252b545b4454364cabdf96405fc5de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fpsCounter: {fileID: 0}
+  _fpsCounter: {fileID: 1374681555}
 --- !u!1 &1890368462
 GameObject:
   m_ObjectHideFlags: 0

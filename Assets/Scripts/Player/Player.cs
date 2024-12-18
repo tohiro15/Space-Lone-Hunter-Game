@@ -8,12 +8,17 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerData _playerData;
 
     private PlayerController _controller;
+
     private void Start()
     {
         _controller = GetComponentInChildren<PlayerController>();
     }
+
     private void Update()
     {
-        _controller.Movement(_playerData.Speed, gameObject);
+        if (_controller != null && _playerData != null && _playerData.Speed > 0)
+        {
+            _controller.Movement(_playerData.Speed, gameObject);
+        }
     }
 }
