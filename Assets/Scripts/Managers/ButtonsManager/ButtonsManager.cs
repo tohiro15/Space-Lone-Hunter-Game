@@ -16,26 +16,26 @@ public class ButtonsManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+    #region Game
     public void StartGame()
     {
         _loadingCanvas.SetActive(true);
 
         StartCoroutine(AsyncLoadingScene("Game"));
     }
-
+    #endregion
     #region MainMenu
     public void ReturnToMainMenu()
     {
-        DataManager.Instance.SaveDataAfterDeath();
+        DataManager.Instance.SaveDataAfterClosedGame();
         SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
-
     #region Shop Menu
     public void OpenShopMenu()
     {
-        DataManager.Instance.SaveDataAfterVictory();
+        DataManager.Instance.SaveDataAfterClosedGame();
         _loadingCanvas.SetActive(true);
 
         StartCoroutine(AsyncLoadingScene("Shop"));
@@ -48,7 +48,6 @@ public class ButtonsManager : MonoBehaviour
         StartCoroutine(AsyncLoadingScene(sceneName));
     }
     #endregion
-
     IEnumerator AsyncLoadingScene(string sceneName)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
