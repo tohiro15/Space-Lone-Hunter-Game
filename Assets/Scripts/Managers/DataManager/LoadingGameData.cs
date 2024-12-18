@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadingGameData : MonoBehaviour
 {
-    [SerializeField] private Slider loadingBar;
-    [SerializeField] private TextMeshProUGUI loadingText;
+    [SerializeField] private Slider _loadingBar;
+    [SerializeField] private TextMeshProUGUI _loadingText;
     private void Start()
     {
         StartCoroutine(LoadingAsync());
@@ -21,8 +21,8 @@ public class LoadingGameData : MonoBehaviour
         {
             float progress = Mathf.Clamp01(loadingDataOperation.progress / 0.9f);
 
-            loadingBar.value = progress;
-            loadingText.text = $"{(progress * 100):0}%";
+            _loadingBar.value = progress;
+            _loadingText.text = $"{(progress * 100):0}%";
 
             yield return null;
         }

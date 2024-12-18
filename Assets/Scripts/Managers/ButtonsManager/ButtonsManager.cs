@@ -19,8 +19,8 @@ public class ButtonsManager : MonoBehaviour
     #region Game
     public void StartGame()
     {
+        _baseCanvas.SetActive(false);
         _loadingCanvas.SetActive(true);
-
         StartCoroutine(AsyncLoadingScene("Game"));
     }
     #endregion
@@ -28,7 +28,9 @@ public class ButtonsManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         DataManager.Instance.SaveDataAfterClosedGame();
-        SceneManager.LoadScene("MainMenu");
+        _baseCanvas.SetActive(false);
+        _loadingCanvas.SetActive(true);
+        StartCoroutine(AsyncLoadingScene("MainMenu"));
     }
 
     #endregion
@@ -36,15 +38,15 @@ public class ButtonsManager : MonoBehaviour
     public void OpenShopMenu()
     {
         DataManager.Instance.SaveDataAfterClosedGame();
+        _baseCanvas.SetActive(false);
         _loadingCanvas.SetActive(true);
-
         StartCoroutine(AsyncLoadingScene("Shop"));
     }
 
     public void ClosedShopMenu(string sceneName)
     {
+        _baseCanvas.SetActive(false);
         _loadingCanvas.SetActive(true);
-
         StartCoroutine(AsyncLoadingScene(sceneName));
     }
     #endregion

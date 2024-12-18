@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(true);
 
         _levelName.color = _gameData.LevelsColor[_gameData.CurrentLevel];
-        _levelName.text = $"«ŒÕ¿ Œ’Œ“€ '{_gameData.LevelsName[_gameData.CurrentLevel]}'";
+        _levelName.text = $"«ŒÕ¿ '{_gameData.LevelsName[_gameData.CurrentLevel]}'";
         _stageCount.text = $"›“¿œ - {_gameData.CurrentStage}/{_gameData.TotalStage}";
     }
 
