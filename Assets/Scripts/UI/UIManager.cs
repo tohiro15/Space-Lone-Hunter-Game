@@ -43,8 +43,8 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _currentStageUI.text = $"опнидемн гнм: {_gameData.CurrentStage}";
-        _recordStageAfterVictoryUI.text = $"бяецн опнидеммшу гнм: {_gameData.RecordStage}";
+        _currentStageUI.text = $"опнидемн щрюонб: {_gameData.CurrentStage} ХГ {_gameData.TotalStage}";
+        _recordStageAfterVictoryUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
         _walletAmountAfterVictoryUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
         _coinsEarnedAfterVictoryUI.text = $"янапюмн: {_playerData.CollectedяoinsAmount}";
     }
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _recordStageAfterDeathUI.text = $"бяецн опнидеммшу гнм: {_gameData.RecordStage}";
+        _recordStageAfterDeathUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
         _walletAmountAfterDeathUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
         _coinsEarnedAfterDeathUI.text = $"янапюмн: {_playerData.CollectedяoinsAmount}";
     }

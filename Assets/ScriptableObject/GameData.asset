@@ -21,6 +21,6 @@ MonoBehaviour:
   - {r: 0.7924528, g: 0.7924528, b: 0, a: 0.5882353}
   - {r: 0.5882353, g: 0, b: 0, a: 0.5882353}
   CurrentLevel: 0
-  CurrentStage: 3
+  CurrentStage: 2
   TotalStage: 5
-  RecordStage: 2
+  RecordStage: 0

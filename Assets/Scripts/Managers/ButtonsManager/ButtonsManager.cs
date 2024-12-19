@@ -6,6 +6,8 @@ using TMPro;
 
 public class ButtonsManager : MonoBehaviour
 {
+    [SerializeField] Animator _blackout;
+
     [SerializeField] GameObject _baseCanvas;
     [SerializeField] GameObject _loadingCanvas;
 
@@ -19,8 +21,6 @@ public class ButtonsManager : MonoBehaviour
     #region Game
     public void StartGame()
     {
-        _baseCanvas.SetActive(false);
-        _loadingCanvas.SetActive(true);
         StartCoroutine(AsyncLoadingScene("Game"));
     }
     #endregion
@@ -28,8 +28,6 @@ public class ButtonsManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         DataManager.Instance.SaveDataAfterClosedGame();
-        _baseCanvas.SetActive(false);
-        _loadingCanvas.SetActive(true);
         StartCoroutine(AsyncLoadingScene("MainMenu"));
     }
 
@@ -38,20 +36,22 @@ public class ButtonsManager : MonoBehaviour
     public void OpenShopMenu()
     {
         DataManager.Instance.SaveDataAfterClosedGame();
-        _baseCanvas.SetActive(false);
-        _loadingCanvas.SetActive(true);
         StartCoroutine(AsyncLoadingScene("Shop"));
     }
 
     public void ClosedShopMenu(string sceneName)
     {
-        _baseCanvas.SetActive(false);
-        _loadingCanvas.SetActive(true);
         StartCoroutine(AsyncLoadingScene(sceneName));
     }
     #endregion
     IEnumerator AsyncLoadingScene(string sceneName)
     {
+        _blackout.enabled = true;
+        yield return new WaitForSecondsRealtime(_blackout.speed);
+
+        _baseCanvas.SetActive(false);
+        _loadingCanvas.SetActive(true);
+
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
 
