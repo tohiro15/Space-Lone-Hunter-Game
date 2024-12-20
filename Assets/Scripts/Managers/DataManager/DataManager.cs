@@ -80,7 +80,7 @@ public class DataManager : MonoBehaviour
             if (_gameData.CurrentStage > _gameData.TotalStage)
             {
                 _gameData.CurrentLevel++;
-                _gameData.CurrentLevel = Mathf.Clamp(_gameData.CurrentLevel, 0, _gameData.LevelsName.Length - 1);
+                _gameData.CurrentLevel = Mathf.Clamp(_gameData.CurrentLevel, 0, _gameData.LevelsColor.Length - 1);
 
                 PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
 

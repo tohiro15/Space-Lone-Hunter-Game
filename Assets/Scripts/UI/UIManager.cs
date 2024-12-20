@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject PauseButton;
     public GameObject HUD;
 
-    [Header("Game UI Elements")]
+    [Header("HUD UI Elements")]
+    [SerializeField] private Image _LevelPanel;
     [SerializeField] private TextMeshProUGUI _stageCount;
     [SerializeField] private TextMeshProUGUI _levelName;
     [SerializeField] private TextMeshProUGUI _timer;
@@ -32,8 +34,8 @@ public class UIManager : MonoBehaviour
     {
         HUD.SetActive(true);
 
-        _levelName.color = _gameData.LevelsColor[_gameData.CurrentLevel];
-        _levelName.text = $"«ŒÕ¿ '{_gameData.LevelsName[_gameData.CurrentLevel]}'";
+        _LevelPanel.color = _gameData.LevelsColor[_gameData.CurrentLevel];
+        _levelName.text = $"«ŒÕ¿";
         _stageCount.text = $"›“¿œ - {_gameData.CurrentStage}/{_gameData.TotalStage}";
     }
 

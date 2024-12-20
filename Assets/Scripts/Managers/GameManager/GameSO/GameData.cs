@@ -11,7 +11,6 @@ public class GameData : ScriptableObject
     public const string RECORD_STAGE_KEY = "RecordStage";
 
     [Header("Level Settings")]
-    public string[] LevelsName;
     public Color[] LevelsColor;
 
     [Header("Statistics")]

@@ -6,17 +6,18 @@ public class BackgroundMove : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
     private float _bgSize;
     private float _bgPos;
     private void Start()
     {
-        _bgSize = GetComponent<SpriteRenderer>().bounds.size.y;
+        _bgSize = _spriteRenderer.bounds.size.y;
     }
 
     private void Update()
     {
         _bgPos -= _speed * Time.deltaTime;
-        _bgPos = Mathf.Repeat(_bgPos, _bgSize);
-        transform.position = new Vector3(0, _bgPos, 0);
+        transform.position = new Vector3(0, Mathf.Repeat(_bgPos, _bgSize), 0);
     }
 }
