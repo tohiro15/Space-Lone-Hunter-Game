@@ -9,7 +9,7 @@ public class PlayResult : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Time.timeScale = 0;
-            _soundManager.StopClip();
+            _soundManager.GameoverClip();
             _uiManager.UpdateGameOverUI();
             DataManager.Instance.SaveDataAfterDeath();
         }

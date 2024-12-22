@@ -5383,7 +5383,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5498,8 +5498,9 @@ MonoBehaviour:
   _playerSource: {fileID: 1991688283}
   _enemySource: {fileID: 1053421062}
   _music:
-  - {fileID: 8300000, guid: 87d247032cc18314083e2c4229104bfd, type: 3}
+  - {fileID: 8300000, guid: fd7047c9697862148886ce229276dbcf, type: 3}
   _victorySound: {fileID: 8300000, guid: b95a949312d167e4ab38add8a5f83e6a, type: 3}
+  _gameoverSound: {fileID: 8300000, guid: 89031ef46fc3cc442ab9cd520303eee3, type: 3}
   _shooting: {fileID: 8300000, guid: 18dd0c46218326f43957d53e658a324c, type: 3}
   _destroyEnemy: {fileID: 8300000, guid: 4576721b7785c75408c8c1486a41dbdb, type: 3}
 --- !u!1 &1263028186
@@ -7152,8 +7153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -59.6}
-  m_SizeDelta: {x: 100, y: 50}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690525299
 MonoBehaviour:

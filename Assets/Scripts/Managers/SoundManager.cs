@@ -7,9 +7,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _enemySource;
 
     [SerializeField] private AudioClip[] _music;
-    [SerializeField] private AudioClip _victorySound;
 
     [Header("Player Sounds Effects")]
+    [SerializeField] private AudioClip _victorySound;
+    [SerializeField] private AudioClip _gameoverSound;
     [SerializeField] private AudioClip _shooting;
 
     [Header("Enemy Sounds Effects")]
@@ -70,6 +71,10 @@ public class SoundManager : MonoBehaviour
     public void VictoryClip()
     {
         PlaySound(_baseSource, _victorySound, true);
+    }
+    public void GameoverClip()
+    {
+        PlaySound(_baseSource, _gameoverSound, true);
     }
     public void StopClip()
     {
