@@ -9,6 +9,7 @@ public class GameData : ScriptableObject
     public const string STAGE_CURRENT_KEY = "CurrentStage";
     public const string STAGE_TOTAL_KEY = "TotalStage";
     public const string RECORD_STAGE_KEY = "RecordStage";
+    public const string IMPROVEMENT_KEY = "ImprovementUnlocked";
 
     [Header("Level Settings")]
     public Color[] LevelsColor;
@@ -19,4 +20,6 @@ public class GameData : ScriptableObject
     public int TotalStage = 5;
 
     public int RecordStage = 0;
+
+    public int ImprovementsUnlocked = 1;
 }

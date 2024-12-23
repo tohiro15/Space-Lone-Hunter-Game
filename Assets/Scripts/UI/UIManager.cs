@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
         _currentStageUI.text = $"опнидемн щрюонб: {_gameData.CurrentStage} ХГ {_gameData.TotalStage}";
         _recordStageAfterVictoryUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
         _walletAmountAfterVictoryUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
-        _coinsEarnedAfterVictoryUI.text = $"янапюмн: {_playerData.CollectedяoinsAmount}";
+        _coinsEarnedAfterVictoryUI.text = $"янапюмн: {_playerData.CollectedCoinsAmount}";
     }
     public void UpdateGameOverUI()
     {
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         _recordStageAfterDeathUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
         _walletAmountAfterDeathUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
-        _coinsEarnedAfterDeathUI.text = $"янапюмн: {_playerData.CollectedяoinsAmount}";
+        _coinsEarnedAfterDeathUI.text = $"янапюмн: {_playerData.CollectedCoinsAmount}";
     }
 
     public void SetTimerText(string text)

@@ -1338,9 +1338,9 @@ RectTransform:
   - {fileID: 802344988}
   m_Father: {fileID: 684346131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 423, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790924875
@@ -1623,9 +1623,9 @@ RectTransform:
   - {fileID: 447797222}
   m_Father: {fileID: 684346131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 130}
   m_SizeDelta: {x: 440, y: 176.09998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &909209718
@@ -2521,56 +2521,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - ItemName: "\u0421\u041A\u041E\u0420\u041E\u0421\u0422\u042C \u0412\u042B\u0421\u0422\u0420\u0415\u041B\u0410"
-    ButtonImage: {fileID: 21300000, guid: eedc82c7dfd64ae429d2e05b971033ad, type: 3}
-    DefaultValue: 10
-    CurrentValue: 0
     Description: "\u0418\u0437\u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C \u043C\u043E\u0434\u0443\u043B\u044C
       \u0434\u043B\u044F \u0443\u0441\u0438\u043B\u0435\u043D\u0438\u044F \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438
       \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430. "
-    NumberPurchase: 
     Price: 100
     IncreasedPrice: 50
     CurrentPurchase: 1
     TotalPurchase: 5
-    isFireSpeed: 1
-    isFireDamage: 0
-    isBulletCount: 0
-  - ItemName: "\u0421\u0418\u041B\u0410 \u0412\u042B\u0421\u0422\u0420\u0415\u041B\u0410"
-    ButtonImage: {fileID: 21300000, guid: 3f0b4f9fff4da284da6608ad93a7dffa, type: 3}
-    DefaultValue: 1
+    NumberPurchase: 
+    ButtonImage: {fileID: 21300000, guid: eedc82c7dfd64ae429d2e05b971033ad, type: 3}
+    DefaultValue: 10
     CurrentValue: 0
+    UpgradeType: 0
+    isOpen: 0
+    FireSpeedIncrease: 0.1
+    FireDamageIncrease: 1
+    BulletCountIncrease: 1
+  - ItemName: "\u0421\u0418\u041B\u0410 \u0412\u042B\u0421\u0422\u0420\u0415\u041B\u0410"
     Description: "\u0418\u0437\u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C \u043C\u043E\u0434\u0443\u043B\u044C
       \u0434\u043B\u044F \u0443\u0441\u0438\u043B\u0435\u043D\u0438\u044F \u043C\u043E\u0449\u043D\u043E\u0441\u0442\u0438
       \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430."
-    NumberPurchase: 
     Price: 100
     IncreasedPrice: 100
     CurrentPurchase: 1
     TotalPurchase: 5
-    isFireSpeed: 0
-    isFireDamage: 1
-    isBulletCount: 0
-  - ItemName: "\u041A\u041E\u041B\u0418\u0427\u0415\u0421\u0422\u0412\u041E \u041F\u0423\u041B\u042C"
-    ButtonImage: {fileID: 21300000, guid: 018147a2797c62c42bf70628c3cc6da3, type: 3}
+    NumberPurchase: 
+    ButtonImage: {fileID: 21300000, guid: 3f0b4f9fff4da284da6608ad93a7dffa, type: 3}
     DefaultValue: 1
     CurrentValue: 0
+    UpgradeType: 0
+    isOpen: 0
+    FireSpeedIncrease: 0.1
+    FireDamageIncrease: 1
+    BulletCountIncrease: 1
+  - ItemName: "\u041A\u041E\u041B\u0418\u0427\u0415\u0421\u0422\u0412\u041E \u041F\u0423\u041B\u042C"
     Description: "\u0418\u0437\u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C \u043C\u043E\u0434\u0443\u043B\u044C
       \u0434\u043B\u044F \u0441\u0442\u0440\u0435\u043B\u044C\u0431\u044B \u0438\u0437
       \u0434\u0432\u0443\u0445 \u043F\u0443\u0448\u0435\u043A."
-    NumberPurchase: 
     Price: 1000
     IncreasedPrice: 0
     CurrentPurchase: 1
     TotalPurchase: 2
-    isFireSpeed: 0
-    isFireDamage: 0
-    isBulletCount: 1
+    NumberPurchase: 
+    ButtonImage: {fileID: 21300000, guid: 018147a2797c62c42bf70628c3cc6da3, type: 3}
+    DefaultValue: 1
+    CurrentValue: 0
+    UpgradeType: 0
+    isOpen: 0
+    FireSpeedIncrease: 0.1
+    FireDamageIncrease: 1
+    BulletCountIncrease: 1
   itemPrefab: {fileID: 6130126329360599071, guid: c085019117125aa47b75797286414c17, type: 3}
   contentPanel: {fileID: 331203546}
   _walletUGUI: {fileID: 802344989}
   _baseAudioSource: {fileID: 516044036}
   _buySoundClip: {fileID: 8300000, guid: 74ff08cbc2f6b594bb39fe38da0486b7, type: 3}
   _playerData: {fileID: 11400000, guid: 1f568c7ac6c3f5342ac6f27c5bc502a2, type: 2}
+  _gameData: {fileID: 11400000, guid: 914ed2123e91c9947a2462dec0f22a91, type: 2}
 --- !u!1 &1540069164
 GameObject:
   m_ObjectHideFlags: 0

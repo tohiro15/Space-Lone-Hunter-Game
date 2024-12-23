@@ -13,7 +13,7 @@ public class PlayerData : ScriptableObject
     public const string FIRE_DAMAGE_KEY= "FireDamage";
 
     [Header("Player Statistic")]
-    public int Collected—oinsAmount = 0;
+    public int CollectedCoinsAmount = 0;
     public int WalletAmount = 0;
     public float Speed = 6f;
 

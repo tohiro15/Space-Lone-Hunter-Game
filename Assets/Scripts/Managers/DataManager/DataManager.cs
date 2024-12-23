@@ -8,22 +8,12 @@ public class DataManager : MonoBehaviour
     [SerializeField] private EnemyData _enemyData;
     [SerializeField] private GameData _gameData;
 
+    private const int DefaultLevel = 0;
+    private const int DefaultStage = 1;
+    private const int DefaultTotalStage = 5;
+
     private void Awake()
     {
-        _gameData.CurrentLevel = PlayerPrefs.GetInt(GameData.LEVEL_CURRENT_KEY, 0);
-
-        _gameData.CurrentStage = PlayerPrefs.GetInt(GameData.STAGE_CURRENT_KEY, 1);
-        _gameData.TotalStage = PlayerPrefs.GetInt(GameData.STAGE_TOTAL_KEY, 5);
-        _gameData.RecordStage = PlayerPrefs.GetInt(GameData.RECORD_STAGE_KEY, 0);
-
-        _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WALLET_AMOUNT_KEY, 0);
-        _playerData.CollectedСoinsAmount = PlayerPrefs.GetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, 0);
-
-        _playerData.BulletCount = PlayerPrefs.GetInt(PlayerData.BULLET_COUNT_KEY, 1);
-
-        _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FIRE_RATE_KEY, 1);
-        _playerData.FireDamage = PlayerPrefs.GetInt(PlayerData.FIRE_DAMAGE_KEY, 1);
-
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -33,117 +23,111 @@ public class DataManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        LoadGameData();
+    }
+
+    private void LoadGameData()
+    {
+        _gameData.CurrentLevel = PlayerPrefs.GetInt(GameData.LEVEL_CURRENT_KEY, DefaultLevel);
+        _gameData.CurrentStage = PlayerPrefs.GetInt(GameData.STAGE_CURRENT_KEY, DefaultStage);
+        _gameData.TotalStage = PlayerPrefs.GetInt(GameData.STAGE_TOTAL_KEY, DefaultTotalStage);
+        _gameData.RecordStage = PlayerPrefs.GetInt(GameData.RECORD_STAGE_KEY, 0);
+        _gameData.ImprovementsUnlocked = PlayerPrefs.GetInt(GameData.IMPROVEMENT_KEY, 1);
+
+        _playerData.WalletAmount = PlayerPrefs.GetInt(PlayerData.WALLET_AMOUNT_KEY, 0);
+        _playerData.CollectedCoinsAmount = PlayerPrefs.GetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, 0);
+        _playerData.BulletCount = PlayerPrefs.GetInt(PlayerData.BULLET_COUNT_KEY, 1);
+        _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FIRE_RATE_KEY, 1f);
+        _playerData.FireDamage = PlayerPrefs.GetInt(PlayerData.FIRE_DAMAGE_KEY, 1);
     }
 
     public void AddWallet(int value)
     {
-        _playerData.CollectedСoinsAmount++;
+        _playerData.CollectedCoinsAmount++;
+        _playerData.WalletAmount += value;
 
-        PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount += value);
+        SaveData(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+    }
+
+    private void SaveData(string key, int value)
+    {
+        PlayerPrefs.SetInt(key, value);
+    }
+
+    private void SaveData(string key, float value)
+    {
+        PlayerPrefs.SetFloat(key, value);
+    }
+
+    private void SaveGameData()
+    {
+        PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
+        PlayerPrefs.SetInt(GameData.STAGE_CURRENT_KEY, _gameData.CurrentStage);
+        PlayerPrefs.SetInt(GameData.STAGE_TOTAL_KEY, _gameData.TotalStage);
+        PlayerPrefs.SetInt(GameData.RECORD_STAGE_KEY, _gameData.RecordStage);
+        PlayerPrefs.SetInt(GameData.IMPROVEMENT_KEY, _gameData.ImprovementsUnlocked);
     }
 
     public void SaveDataAfterDeath()
     {
-
-        if (_playerData != null && _gameData != null)
-        {
-            _gameData.CurrentLevel = 0;
-            _gameData.CurrentStage = 1;
-            _gameData.TotalStage = 5;
-
-            _playerData.CollectedСoinsAmount = 0;
-
-            PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
-            PlayerPrefs.SetInt(GameData.STAGE_CURRENT_KEY, _gameData.CurrentStage);
-            PlayerPrefs.SetInt(GameData.STAGE_TOTAL_KEY, _gameData.TotalStage);
-            PlayerPrefs.SetInt(GameData.RECORD_STAGE_KEY, _gameData.RecordStage);
-            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedСoinsAmount);
-
-            PlayerPrefs.Save();
-            Debug.Log("Данные игрока сохранены в PlayerPrefs.");
-        }
-        else
-        {
-            Debug.LogError("PlayerData не инициализирован.");
-        }
+        ResetGameData();
+        SaveAllPlayerData();
     }
+
     public void SaveDataAfterVictory()
     {
+        _gameData.CurrentStage++;
+        _gameData.RecordStage++;
 
-        if (_playerData != null && _gameData != null)
+        if (_gameData.CurrentStage > _gameData.TotalStage)
         {
-            _gameData.CurrentStage += 1;
-            _gameData.RecordStage++;
-            _playerData.CollectedСoinsAmount = 0;
+            _gameData.CurrentLevel++;
+            _gameData.CurrentLevel = Mathf.Clamp(_gameData.CurrentLevel, 0, _gameData.LevelsColor.Length - 1);
+            _gameData.ImprovementsUnlocked = Mathf.Max(_gameData.ImprovementsUnlocked, _gameData.CurrentLevel + 1);
+            PlayerPrefs.SetInt(GameData.IMPROVEMENT_KEY, _gameData.ImprovementsUnlocked);
+            PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
 
-            if (_gameData.CurrentStage > _gameData.TotalStage)
-            {
-                _gameData.CurrentLevel++;
-                _gameData.CurrentLevel = Mathf.Clamp(_gameData.CurrentLevel, 0, _gameData.LevelsColor.Length - 1);
-
-                PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
-
-                _gameData.CurrentStage = 1;
-                _gameData.TotalStage += 5;
-
-                PlayerPrefs.SetInt(GameData.STAGE_TOTAL_KEY, _gameData.TotalStage);
-            }
-
-            PlayerPrefs.SetInt(GameData.STAGE_CURRENT_KEY, _gameData.CurrentStage);
-            PlayerPrefs.SetInt(GameData.RECORD_STAGE_KEY, _gameData.RecordStage);
-            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedСoinsAmount);
-
-            PlayerPrefs.Save();
-            Debug.Log("Данные игрока сохранены в PlayerPrefs.");
+            _gameData.CurrentStage = 1;
+            _gameData.TotalStage += 5;
+            _playerData.WalletAmount += 100;
         }
-        else
-        {
-            Debug.LogError("PlayerData и GameData не инициализированы.");
-        }
+
+        _playerData.CollectedCoinsAmount = 0;
+
+        SaveAllPlayerData();
     }
 
     public void SaveDataAfterClosedGame()
     {
-        if (_playerData != null && _gameData != null)
-        {
-            _playerData.CollectedСoinsAmount = 0;
-
-            PlayerPrefs.SetInt(GameData.LEVEL_CURRENT_KEY, _gameData.CurrentLevel);
-            PlayerPrefs.SetInt(GameData.STAGE_CURRENT_KEY, _gameData.CurrentStage);
-            PlayerPrefs.SetInt(GameData.STAGE_TOTAL_KEY, _gameData.TotalStage);
-            PlayerPrefs.SetInt(GameData.RECORD_STAGE_KEY, _gameData.RecordStage);
-            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
-            PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedСoinsAmount);
-
-            PlayerPrefs.Save();
-            Debug.Log("Данные игрока сохранены в PlayerPrefs.");
-        }
-        else
-        {
-            Debug.LogError("PlayerData и GameData не инициализированы.");
-        }
+        SaveAllPlayerData();
     }
+
     public void SaveDataAfterShop()
     {
-        if (_playerData != null)
-        {
-            PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+        SaveAllPlayerData();
+    }
 
-            PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount);
+    private void SaveAllPlayerData()
+    {
+        PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
+        PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedCoinsAmount);
+        PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount);
+        PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
+        PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate);
 
-            PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
-            PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate);
+        SaveGameData();
+        PlayerPrefs.Save();
+        Debug.Log("Данные игрока успешно сохранены.");
+    }
 
+    private void ResetGameData()
+    {
+        _gameData.CurrentLevel = 0;
+        _gameData.CurrentStage = 1;
+        _gameData.TotalStage = 5;
+        _playerData.CollectedCoinsAmount = 0;
 
-            PlayerPrefs.Save();
-            Debug.Log("Данные игрока сохранены в PlayerPrefs.");
-        }
-        else
-        {
-            Debug.LogError("PlayerData не инициализирован.");
-        }
+        SaveGameData();
     }
 }
-

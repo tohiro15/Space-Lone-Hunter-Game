@@ -4,7 +4,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
+    [Range(1.5f, 2f)]
     [SerializeField] private float _spawnSpeed = 2f;
+    private float _maxSpawnSpeed = 1.5f;
 
     [Header("Enemy Settings")]
     [SerializeField] private float _enemySpeed;
@@ -14,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Content")]
     [SerializeField] private UIManager _uiManager;
-    [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private SoundManager _soundManager; 
     [SerializeField] private EnemyData _enemyData;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private GameData _gameData;
@@ -24,7 +26,6 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _enemyData.Health = Mathf.Clamp(_gameData.CurrentStage, 1, _enemyData.MaxHealth);
-
         StartCoroutine(SpawnEnemies());
     }
 
@@ -48,24 +49,27 @@ public class EnemySpawner : MonoBehaviour
     {
         int randomPoint = Random.Range(0, _spawnPoints.Length);
         Vector3 spawnPosition = _spawnPoints[randomPoint].position;
-
         GameObject enemy = EnemyPool.Instance.GetFromPool(spawnPosition);
-
 
         if (enemy != null)
         {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            enemyScript.OnEnemyDestroyed += OnEnemyDestroyed;
-
-            float clampedSpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
-            enemyScript.Initialize(_soundManager, _enemyData.Health, _playerData.FireDamage, clampedSpeed);
+            enemyScript.OnEnemyDestroyed += OnEnemyDestroyed; 
+            float clampedEnemySpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
+            enemyScript.Initialize(_soundManager, _enemyData.Health, _playerData.FireDamage, clampedEnemySpeed);
         }
     }
 
     private void OnEnemyDestroyed(Enemy enemy)
     {
-        _enemySpeed += 0.05f;
+        if (_spawnSpeed > _maxSpawnSpeed)
+        {
+            _spawnSpeed -= 0.05f;
+        }
 
+        _enemySpeed += 0.05f;
         _enemySpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
+
     }
+
 }
