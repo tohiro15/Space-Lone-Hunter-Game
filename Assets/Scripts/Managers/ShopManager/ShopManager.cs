@@ -171,7 +171,7 @@ public class ShopManager : MonoBehaviour
     {
         shopItemUI.PriceText.text = item.Price.ToString();
         shopItemUI.Description.text = item.Description;
-        //        shopItemUI.NumberPurchase.text = $"{item.CurrentPurchase}/{item.TotalPurchase}";
+        shopItemUI.NumberPurchase.text = $"{item.CurrentPurchase}/{item.TotalPurchase}";
         if (item.CurrentPurchase >= item.TotalPurchase)
         {
             shopItemUI.PriceText.text = "MAX";
