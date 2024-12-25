@@ -2529,6 +2529,10 @@ MonoBehaviour:
     CurrentPurchase: 1
     TotalPurchase: 5
     NumberPurchase: 
+    LockText: "\u041D\u0410\u0427\u041D\u0418\u0422\u0415 \u0417\u0415\u041B\u0415\u041D\u0423\u042E
+      \u0417\u041E\u041D\u0423 \u0427\u0422\u041E\u0411\u042B \u041E\u0422\u041A\u0420\u042B\u0422\u042C
+      \u041C\u041E\u0414\u0423\u041B\u042C \u201C\u0421\u041A\u041E\u0420\u041E\u0421\u0422\u042C
+      \u041F\u0423\u041B\u042C\u201D"
     ButtonImage: {fileID: 21300000, guid: eedc82c7dfd64ae429d2e05b971033ad, type: 3}
     DefaultValue: 10
     CurrentValue: 0
@@ -2546,6 +2550,10 @@ MonoBehaviour:
     CurrentPurchase: 1
     TotalPurchase: 5
     NumberPurchase: 
+    LockText: "\u041E\u0422\u041A\u0420\u041E\u0419\u0422\u0415 \u0416\u0415\u041B\u0422\u0423\u042E
+      \u0417\u041E\u041D\u0423 \u0427\u0422\u041E\u0411\u042B \u041E\u0422\u041A\u0420\u042B\u0422\u042C
+      \u041C\u041E\u0414\u0423\u041B\u042C \u201C\u0423\u0420\u041E\u041D \u041E\u0422
+      \u0412\u042B\u0421\u0422\u0420\u0415\u041B\u0410\u201D"
     ButtonImage: {fileID: 21300000, guid: 3f0b4f9fff4da284da6608ad93a7dffa, type: 3}
     DefaultValue: 1
     CurrentValue: 0
@@ -2563,6 +2571,10 @@ MonoBehaviour:
     CurrentPurchase: 1
     TotalPurchase: 2
     NumberPurchase: 
+    LockText: "\u041E\u0422\u041A\u0420\u041E\u0419\u0422\u0415 \u041A\u0420\u0410\u0421\u041D\u0423\u042E
+      \u0417\u041E\u041D\u0423 \u0427\u0422\u041E\u0411\u042B \u041E\u0422\u041A\u0420\u042B\u0422\u042C
+      \u041C\u041E\u0414\u0423\u041B\u042C \u201C\u041A\u041E\u041B \u0418\u0427\u0415\u0421\u0422\u0412\u041E
+      \u041F\u0423\u041B\u042C\u201D"
     ButtonImage: {fileID: 21300000, guid: 018147a2797c62c42bf70628c3cc6da3, type: 3}
     DefaultValue: 1
     CurrentValue: 0
@@ -2872,7 +2884,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 878335003}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
