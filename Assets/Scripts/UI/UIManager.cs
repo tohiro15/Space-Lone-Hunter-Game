@@ -45,10 +45,10 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _currentStageUI.text = $"опнидемн щрюонб: {_gameData.CurrentStage} ХГ {_gameData.TotalStage}";
-        _recordStageAfterVictoryUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
-        _walletAmountAfterVictoryUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
-        _coinsEarnedAfterVictoryUI.text = $"янапюмн: {_playerData.CollectedCoinsAmount}";
+        _currentStageUI.text = $"{_gameData.CurrentStage} ХГ {_gameData.TotalStage}";
+        _recordStageAfterVictoryUI.text = _gameData.RecordStage.ToString();
+        _walletAmountAfterVictoryUI.text = _playerData.WalletAmount.ToString();
+        _coinsEarnedAfterVictoryUI.text = _playerData.CollectedCoinsAmount.ToString();
     }
     public void UpdateGameOverUI()
     {
@@ -56,9 +56,9 @@ public class UIManager : MonoBehaviour
         HUD.SetActive(false);
         PauseButton.SetActive(false);
 
-        _recordStageAfterDeathUI.text = $"бяецн опнидеммшу щрюонб: {_gameData.RecordStage}";
-        _walletAmountAfterDeathUI.text = $"цпсгнбни нряей: {_playerData.WalletAmount}";
-        _coinsEarnedAfterDeathUI.text = $"янапюмн: {_playerData.CollectedCoinsAmount}";
+        _recordStageAfterDeathUI.text = _gameData.RecordStage.ToString();
+        _walletAmountAfterDeathUI.text = _playerData.WalletAmount.ToString();
+        _coinsEarnedAfterDeathUI.text = _playerData.CollectedCoinsAmount.ToString();
     }
 
     public void SetTimerText(string text)
