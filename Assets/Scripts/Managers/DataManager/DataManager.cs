@@ -39,7 +39,7 @@ public class DataManager : MonoBehaviour
         _playerData.CollectedCoinsAmount = PlayerPrefs.GetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, 0);
         _playerData.BulletCount = PlayerPrefs.GetInt(PlayerData.BULLET_COUNT_KEY, 1);
         _playerData.FireRate = PlayerPrefs.GetFloat(PlayerData.FIRE_RATE_KEY, 1f);
-        _playerData.FireDamage = PlayerPrefs.GetInt(PlayerData.FIRE_DAMAGE_KEY, 1);
+        _playerData.FireDamage = PlayerPrefs.GetFloat(PlayerData.FIRE_DAMAGE_KEY, 1f);
     }
 
     public void AddWallet(int value)
@@ -113,7 +113,7 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
         PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedCoinsAmount);
         PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount);
-        PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
+        PlayerPrefs.SetFloat(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
         PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate);
 
         SaveGameData();

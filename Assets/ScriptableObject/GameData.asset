@@ -16,8 +16,8 @@ MonoBehaviour:
   - {r: 0.04356119, g: 1, b: 0, a: 0.5882353}
   - {r: 0.7924528, g: 0.7924528, b: 0, a: 0.5882353}
   - {r: 0.5882353, g: 0, b: 0, a: 0.5882353}
-  CurrentLevel: 0
+  CurrentLevel: 1
   CurrentStage: 2
   TotalStage: 5
-  RecordStage: 1
-  ImprovementsUnlocked: 1
+  RecordStage: 0
+  ImprovementsUnlocked: 2

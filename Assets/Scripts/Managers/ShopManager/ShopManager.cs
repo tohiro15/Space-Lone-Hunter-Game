@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public enum UpgradeType
 {
@@ -40,7 +39,7 @@ public class ShopManager : MonoBehaviour
         public bool isOpen = false;
 
         public float FireSpeedIncrease = 0.1f;
-        public int FireDamageIncrease = 1;
+        public float FireDamageIncrease = 1f;
         public int BulletCountIncrease = 1;
     }
 
@@ -145,7 +144,7 @@ public class ShopManager : MonoBehaviour
                     break;
                 case UpgradeType.FireDamage:
                     _playerData.FireDamage += item.FireDamageIncrease;
-                    PlayerPrefs.SetInt(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
+                    PlayerPrefs.SetFloat(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
                     break;
                 case UpgradeType.BulletCount:
                     _playerData.BulletCount += item.BulletCountIncrease;

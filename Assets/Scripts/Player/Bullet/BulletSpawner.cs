@@ -28,16 +28,16 @@ using UnityEngine;
 
         private void Spawn()
         {
-            if (_playerData.BulletCount >= 2)
+            if (_playerData.BulletCount < 2)
+            {
+                SpawnBullet(_defaultSpawn);
+            }
+            else
             {
                 foreach (Transform bulletSpawner in _bulletModifiedSpawns)
                 {
                     SpawnBullet(bulletSpawner);
                 }
-            }
-            else
-            {
-                SpawnBullet(_defaultSpawn);
             }
         }
 

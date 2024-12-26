@@ -5,8 +5,8 @@ public class Enemy : MonoBehaviour
 {
     private SoundManager _soundManager;
 
-    private int _health;
-    private int _damage;
+    private float _health;
+    private float _damage;
     private float _speed;
 
     private TextMeshProUGUI _healthText;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     public event System.Action<Enemy> OnEnemyDestroyed;
 
-    public void Initialize(SoundManager soundManager, int health, int damage, float speed)
+    public void Initialize(SoundManager soundManager, float health, float damage, float speed)
     {
         _healthText = GetComponentInChildren<TextMeshProUGUI>();
         _healthText.text = health.ToString();
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
         _soundManager = soundManager;
 
-        _cachedTransform = transform; // Кэшируем трансформ один раз
+        _cachedTransform = transform;
 
         _health = health;
         _damage = damage;
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         _soundManager.DestroyEnemyClip();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (!_isActive || _health <= 0) return;
 

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField] private GameData _gameData;
     [SerializeField] private PlayerData _playerData;
 

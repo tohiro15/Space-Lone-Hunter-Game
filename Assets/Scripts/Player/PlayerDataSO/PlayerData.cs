@@ -19,6 +19,6 @@ public class PlayerData : ScriptableObject
 
     public int BulletCount = 1;
 
-    public int FireDamage = 1;
+    public float FireDamage = 1;
     public float FireRate = 1;
 }
