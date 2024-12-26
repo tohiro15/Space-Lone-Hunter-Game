@@ -41,6 +41,7 @@ public class ButtonsManager : MonoBehaviour
 
     public void ClosedShopMenu(string sceneName)
     {
+        DataManager.Instance.SaveDataAfterShop();
         StartCoroutine(AsyncLoadingScene(sceneName));
     }
     #endregion

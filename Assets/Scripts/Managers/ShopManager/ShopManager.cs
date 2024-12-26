@@ -73,11 +73,15 @@ public class ShopManager : MonoBehaviour
     private void SetItemAvailability()
     {
         int improvementsUnlocked = _gameData.CurrentLevel + 1;
+        if (improvementsUnlocked > _gameData.ImprovementsUnlocked) _gameData.ImprovementsUnlocked = improvementsUnlocked;
+
         for (int i = 0; i < items.Count; i++)
         {
-            items[i].isOpen = i < improvementsUnlocked;
+            items[i].isOpen = i < _gameData.ImprovementsUnlocked;
         }
-        if (improvementsUnlocked > _gameData.ImprovementsUnlocked) _gameData.ImprovementsUnlocked = improvementsUnlocked;
+
+        PlayerPrefs.SetInt(GameData.IMPROVEMENT_KEY, _gameData.ImprovementsUnlocked);
+        PlayerPrefs.Save();
     }
 
     public void PopulateShop()
@@ -100,9 +104,9 @@ public class ShopManager : MonoBehaviour
 
     private void InitializeShopItem(ShopItemUI shopItemUI, ShopItem item, GameObject newItem)
     {
-        item.CurrentValue = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.DefaultValue);
-        item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), 1);
-        item.Price = PlayerPrefs.GetInt(GetUniqueKey(PRICE_KEY, item), item.Price);
+        item.CurrentValue = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_VALUE_KEY, item.UpgradeType), item.DefaultValue);
+        item.CurrentPurchase = PlayerPrefs.GetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item.UpgradeType), 1);
+        item.Price = PlayerPrefs.GetInt(GetUniqueKey(PRICE_KEY, item.UpgradeType), item.Price);
 
         shopItemUI.ButtonImage.sprite = item.ButtonImage;
         shopItemUI.ItemName.text = item.ItemName;
@@ -202,14 +206,14 @@ public class ShopManager : MonoBehaviour
 
     private void SavePlayerPrefs(ShopItem item)
     {
-        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_VALUE_KEY, item), item.CurrentValue);
-        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item), item.CurrentPurchase);
-        PlayerPrefs.SetInt(GetUniqueKey(PRICE_KEY, item), item.Price);
+        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_VALUE_KEY, item.UpgradeType), item.CurrentValue);
+        PlayerPrefs.SetInt(GetUniqueKey(CURRENT_PURCHASE_KEY, item.UpgradeType), item.CurrentPurchase);
+        PlayerPrefs.SetInt(GetUniqueKey(PRICE_KEY, item.UpgradeType), item.Price);
         PlayerPrefs.Save();
     }
 
-    private string GetUniqueKey(string baseKey, ShopItem item)
+    private string GetUniqueKey(string baseKey, UpgradeType upgradeType)
     {
-        return $"{baseKey}_{item.ItemName}";
+        return $"{baseKey}_{upgradeType}";
     }
 }

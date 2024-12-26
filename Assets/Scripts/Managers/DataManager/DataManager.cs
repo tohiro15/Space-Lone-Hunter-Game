@@ -110,13 +110,16 @@ public class DataManager : MonoBehaviour
 
     private void SaveAllPlayerData()
     {
+        SaveGameData();
+
         PlayerPrefs.SetInt(PlayerData.WALLET_AMOUNT_KEY, _playerData.WalletAmount);
         PlayerPrefs.SetInt(PlayerData.COLLECTED_COINS_AMOUNT_KEY, _playerData.CollectedCoinsAmount);
         PlayerPrefs.SetInt(PlayerData.BULLET_COUNT_KEY, _playerData.BulletCount);
         PlayerPrefs.SetFloat(PlayerData.FIRE_DAMAGE_KEY, _playerData.FireDamage);
         PlayerPrefs.SetFloat(PlayerData.FIRE_RATE_KEY, _playerData.FireRate);
 
-        SaveGameData();
+        PlayerPrefs.SetInt(GameData.IMPROVEMENT_KEY, _gameData.ImprovementsUnlocked);
+
         PlayerPrefs.Save();
         Debug.Log("Данные игрока успешно сохранены.");
     }
