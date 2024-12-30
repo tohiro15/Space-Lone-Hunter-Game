@@ -12,11 +12,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _enemySpeed;
     [SerializeField] private float _maxEnemySpeed;
     [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private Transform[] _spawnPoints;
 
     [Header("Content")]
     [SerializeField] private UIManager _uiManager;
-    [SerializeField] private SoundManager _soundManager; 
+    [SerializeField] private SoundManager _soundManager;
     [SerializeField] private EnemyData _enemyData;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private GameData _gameData;
@@ -47,18 +46,23 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        int randomPoint = Random.Range(0, _spawnPoints.Length);
-        Vector3 spawnPosition = _spawnPoints[randomPoint].position;
+        Vector3 screenMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 screenMax = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+
+        Vector3 spawnPosition = Vector3.zero;
+        spawnPosition = new Vector3(Random.Range(screenMin.x, screenMax.x), screenMax.y + 1, 0);
+
         GameObject enemy = EnemyPool.Instance.GetFromPool(spawnPosition);
 
         if (enemy != null)
         {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            enemyScript.OnEnemyDestroyed += OnEnemyDestroyed; 
+            enemyScript.OnEnemyDestroyed += OnEnemyDestroyed;
             float clampedEnemySpeed = Mathf.Clamp(_enemySpeed, 0f, _maxEnemySpeed);
             enemyScript.Initialize(_soundManager, _enemyData.Health, _playerData.FireDamage, clampedEnemySpeed);
         }
     }
+
 
     private void OnEnemyDestroyed(Enemy enemy)
     {

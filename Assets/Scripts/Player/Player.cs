@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private RectTransform _controleZone;
+
     [Header("Player Data | Scriptable Object")]
     [SerializeField] private PlayerData _playerData;
 
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour
     {
         if (_controller != null && _playerData != null && _playerData.Speed > 0)
         {
-            _controller.Movement(_playerData.Speed, gameObject);
+            _controller.Movement(_playerData.Speed, gameObject, _controleZone);
         }
     }
 }

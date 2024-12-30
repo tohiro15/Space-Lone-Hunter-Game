@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8541ceb441b74240934469dcb2b3c56, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  CollectedCoinsAmount: 3
-  WalletAmount: 123123214
+  CollectedCoinsAmount: 0
+  WalletAmount: 2147482650
   Speed: 6
-  BulletCount: 1
+  BulletCount: 2
   FireDamage: 1
   FireRate: 1
