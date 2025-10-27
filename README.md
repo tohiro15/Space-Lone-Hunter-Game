@@ -3,6 +3,9 @@
 Engine - Unity 2022.3.51f1.
 Language - Russian, English.
 
-- This game was created during a deeper exploration of the Unity engine 2022.3.51f1. I release the whole project and its updates in English and Russian.
+---
 
-- Эта игра была создана во время более глубокого изучения движка Unity 2022.3.51f1. Весь проект и его обновления я выпускаю на Английском и Русском языке.
+## 🌐 Community
+
+[![Telegram Channel RU](https://img.shields.io/endpoint?style=for-the-badge&color=0891b2&labelColor=1c1917&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fgamedev_my_love&label=Channel%20RU)](https://t.me/gamedev_my_love)
+[![Telegram Solyanka Community](https://img.shields.io/endpoint?label=Solyanka%20community&style=for-the-badge&color=0891b2&labelColor=1c1917&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fsolycmty)](https://t.me/solycmty)
