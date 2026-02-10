@@ -1,4 +1,5 @@
 using UnityEngine;
+using YG;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +19,11 @@ public class Player : MonoBehaviour
     {
         if (_controller != null && _playerData != null && _playerData.Speed > 0)
         {
-            _controller.Movement(_playerData.Speed, gameObject, _controleZone);
+            if (YG2.envir.isMobile)
+               _controller.HandleMobile(_playerData.Speed, gameObject, _controleZone);
+
+            if (YG2.envir.isDesktop)
+                _controller.HandleDesktop(_playerData.Speed, gameObject, _controleZone);
         }
     }
 }

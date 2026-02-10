@@ -5,7 +5,6 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     [SerializeField] private PlayerData _playerData;
-    [SerializeField] private EnemyData _enemyData;
     [SerializeField] private GameData _gameData;
 
     private const int DefaultLevel = 0;

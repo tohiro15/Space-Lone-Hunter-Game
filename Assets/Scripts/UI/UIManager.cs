@@ -8,10 +8,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerData _playerData;
 
     [Header("GameObjects UI")]
-    public GameObject VictoryUI;
-    public GameObject GameOverUI;
-    public GameObject PauseButton;
-    public GameObject HUD;
+    [SerializeField] private GameObject _victoryUI;
+    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private GameObject _pauseButton;
+    [SerializeField] private GameObject _hud;
 
     [Header("HUD UI Elements")]
     [SerializeField] private Image _LevelPanel;
@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinsEarnedAfterDeathUI;
     private void Start()
     {
-        HUD.SetActive(true);
+        _hud?.gameObject.SetActive(true);
 
         _LevelPanel.color = _gameData.LevelsColor[_gameData.CurrentLevel];
         _levelName.text = $"ÇÎÍÀ";
@@ -40,9 +40,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateVictoryGameUI()
     {
-        VictoryUI.SetActive(true);
-        HUD.SetActive(false);
-        PauseButton.SetActive(false);
+        _victoryUI?.gameObject.SetActive(true);
+        _hud?.gameObject.SetActive(false);
+        _pauseButton?.gameObject.SetActive(false);
 
         _currentStageUI.text = $"{_gameData.CurrentStage} èç {_gameData.TotalStage}";
         _recordStageAfterVictoryUI.text = _gameData.RecordStage.ToString();
@@ -51,9 +51,9 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateGameOverUI()
     {
-        GameOverUI.SetActive(true);
-        HUD.SetActive(false);
-        PauseButton.SetActive(false);
+        _gameOverUI?.gameObject.SetActive(true);
+        _hud?.gameObject.SetActive(false);
+        _pauseButton?.gameObject.SetActive(false);
 
         _recordStageAfterDeathUI.text = _gameData.RecordStage.ToString();
         _walletAmountAfterDeathUI.text = _playerData.WalletAmount.ToString();

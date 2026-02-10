@@ -1,43 +1,69 @@
 using UnityEngine;
+using YG;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
+    private Camera _cam;
 
-    private void Start()
+    private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _cam = Camera.main;
     }
-    public void Movement(float speed, GameObject player, RectTransform controlZone)
+
+    private void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
+        ClampToScreen();
+    }
 
-            if (IsTouchInsideRectTransform(touch.position, controlZone))
-            {
-                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(
-                    new Vector3(
-                        touch.position.x,
-                        touch.position.y,
-                        Camera.main.transform.position.z - player.transform.position.z
-                    )
-                );
+    public void HandleDesktop(float speed, GameObject player, RectTransform controlZone)
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
 
-                Vector3 targetPosition = new Vector3(
-                    touchPosition.x,
-                    player.transform.position.y,
-                    player.transform.position.z
-                );
+        Vector3 movement = new Vector3(moveX, 0f, 0f);
+        transform.position += movement * speed * Time.deltaTime;
+    }
+    public void HandleMobile(float speed, GameObject player, RectTransform controlZone)
+    {
+        if (Input.touchCount == 0) return;
 
-                player.transform.position = Vector3.Lerp(
-                    player.transform.position,
-                    targetPosition,
-                    speed * Time.deltaTime
-                );
-            }
-            limitCharacterMovement(player);
-        }
+        Touch touch = Input.GetTouch(0);
+
+        if (!IsTouchInsideRectTransform(touch.position, controlZone))
+            return;
+
+        Vector3 worldPoint = _cam.ScreenToWorldPoint(
+            new Vector3(
+                touch.position.x,
+                touch.position.y,
+                _cam.transform.position.z * -1f
+            )
+        );
+
+        Vector3 target = new Vector3(worldPoint.x, transform.position.y, transform.position.z);
+
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target,
+            speed * Time.deltaTime
+        );
+    }
+    private void ClampToScreen()
+    {
+        float screenHeight = _cam.orthographicSize;
+        float screenWidth = screenHeight * _cam.aspect;
+
+        float halfWidth = _spriteRenderer.bounds.extents.x;
+        float halfHeight = _spriteRenderer.bounds.extents.y;
+
+        Vector3 pos = transform.position;
+
+        pos.x = Mathf.Clamp(pos.x, -screenWidth + halfWidth, screenWidth - halfWidth);
+        pos.y = Mathf.Clamp(pos.y, -screenHeight + halfHeight, screenHeight - halfHeight);
+
+        transform.position = pos;
     }
 
     private bool IsTouchInsideRectTransform(Vector2 screenPosition, RectTransform rectTransform)
@@ -45,32 +71,10 @@ public class PlayerController : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform,
             screenPosition,
-            null, 
+            null,
             out Vector2 localPoint
         );
 
         return rectTransform.rect.Contains(localPoint);
-    }
-
-    private void limitCharacterMovement(GameObject player)
-    {
-        float screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        float screenHeight = Camera.main.orthographicSize;
-
-        if (_spriteRenderer != null)
-        {
-            float playerHalfWidth = _spriteRenderer.bounds.extents.x;
-            float playerHalfHeight = _spriteRenderer.bounds.extents.y;
-
-            Vector3 newPosition = player.transform.position;
-            newPosition.x = Mathf.Clamp(newPosition.x, -screenWidth + playerHalfWidth, screenWidth - playerHalfWidth);
-            newPosition.y = Mathf.Clamp(newPosition.y, -screenHeight + playerHalfHeight, screenHeight - playerHalfHeight);
-
-            player.transform.position = newPosition;
-        }
-        else
-        {
-            Debug.LogWarning("Player does not have a SpriteRenderer component!");
-        }
     }
 }
