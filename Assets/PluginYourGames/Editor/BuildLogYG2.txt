@@ -1,0 +1,3 @@
+﻿Build path: D:/GamesDevelopment/Сборки/Space Lone Hunter
+Build number: 0
+PluginYG version: 2.007
