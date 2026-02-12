@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
