@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateGameOverUI()
     {
+        AdvertisementManager.Instance.StartInterstitial();
+
         _gameOverUI?.gameObject.SetActive(true);
         _hud?.gameObject.SetActive(false);
         _pauseButton?.gameObject.SetActive(false);

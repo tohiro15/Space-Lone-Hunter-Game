@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa747916aa66674d96ea40ca8a480b2, type: 3}
   m_Name: SettingsYG2
   m_EditorClassIdentifier: Assembly-CSharp::YG.InfoYG
+  InterstitialAdv:
+    showFirstAdv: 0
+    interAdvInterval: 60
+    postponeCallByFail: 0
+    postponeCallTimer: 10
+    labelAdvSimLabel: 0
   Localization:
     setLanguageMod: 1
   Basic:
@@ -26,9 +32,9 @@ MonoBehaviour:
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
     initDelaySimulation: 0
-    buildNumber: 0
+    buildNumber: 5
   Simulation:
-    device: 0
+    device: 1
     language: ru
     advIntervalSimulation: 60
     durationAdv: 0.5
@@ -50,7 +56,7 @@ MonoBehaviour:
       height: 24
       color1: {r: 0.25, g: 0.6392, b: 1, a: 1}
       color2: {r: 1, g: 0.831, b: 0.149, a: 0.7}
-    fixedAspectRatio: 1
+    fixedAspectRatio: 0
     aspectRatio: 16/9
     disableForMobile: 1
     fillBackground: 0
@@ -67,6 +73,9 @@ MonoBehaviour:
   platformInfo:
     ownHost: 0
   platformToggles:
+    showFirstAdv: 0
+    interAdvInterval: 0
+    postponeCallByFail: 0
     setLanguageMod: 0
     autoPauseGame: 0
     selectWebGLTemplate: 1
